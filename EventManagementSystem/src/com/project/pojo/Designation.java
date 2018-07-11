@@ -1,4 +1,4 @@
-package abhi.project1.beans;
+package com.project.pojo;
 
 public class Designation {
 
