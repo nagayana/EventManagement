@@ -1,6 +1,7 @@
 package com.project.pojo;
 
 public class Event {
+<<<<<<< HEAD
 	
 	private int eventID;
 	private String eventName;
@@ -77,4 +78,7 @@ public class Event {
 	
 	
 	
+=======
+	//kanishka test code
+>>>>>>> branch 'master' of https://github.com/nagayana/EventManagement.git
 }
