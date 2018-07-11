@@ -1,3 +1,7 @@
+package com.project.pojo;
+
+public class Event {
+
 
 	
 	private int eventID;
@@ -72,6 +76,5 @@
 				+ ", eventTime=" + eventTime + ", eventRegistrationDeadline=" + eventRegistrationDeadline
 				+ ", maxRegistration=" + maxRegistration + ", currentRegistration=" + currentRegistration + "]";
 	}
-	
-	
 
+}
