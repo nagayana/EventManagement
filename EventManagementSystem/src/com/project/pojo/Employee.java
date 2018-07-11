@@ -1,6 +1,7 @@
 package com.project.pojo;
 
 public class Employee {
+
 	private int employeeId, designationId;
 	private String employeeName, type, username, password;
 
@@ -68,5 +69,4 @@ public class Employee {
 		this.username = username;
 		this.password = password;
 	}
-
 }
