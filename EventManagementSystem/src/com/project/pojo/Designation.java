@@ -1,8 +1,6 @@
 package com.project.pojo;
 
 public class Designation {
-<<<<<<< HEAD
-=======
 	private int designationId;
 	private String designationName;
 
@@ -38,6 +36,5 @@ public class Designation {
 	public void setDesignationName(String designationName) {
 		this.designationName = designationName;
 	}
->>>>>>> branch 'master' of https://github.com/nagayana/EventManagement.git
 
 }
