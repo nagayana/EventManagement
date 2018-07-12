@@ -4,11 +4,11 @@ public class Attraction {
 	private int attractionId;
 	private String name;
 	private String coordinatorName;
-	private String duration;
-	private double price;
+	private int duration;
+	private int price;
 	private int eventId;
 	
-	public Attraction(int attractionId, String name, String coordinatorName, String duration, double price, int eventId) {
+	public Attraction(int attractionId, String name, String coordinatorName, int duration, int price, int eventId) {
 		super();
 		this.attractionId = attractionId;
 		this.name = name;
@@ -16,6 +16,7 @@ public class Attraction {
 		this.duration = duration;
 		this.price = price;
 		this.eventId = eventId;
+		
 	}
 	
 
@@ -48,19 +49,19 @@ public class Attraction {
 		this.coordinatorName = coordinatorName;
 	}
 
-	public String getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
