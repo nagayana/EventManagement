@@ -1,19 +1,27 @@
 package com.project.pojo;
 
 public class Food {
-	private int foodId, price, quantity, eventId;
+	private int foodId, foodPrice, foodQuantity, eventId;
 	private String foodName;
+
+	public Food(int foodId, String foodName, int foodPrice, int foodQuantity, int eventId) {
+		this.foodId=foodId;
+		this.foodName=foodName;
+		this.foodPrice=foodPrice;
+		this.foodQuantity=foodQuantity;
+		this.eventId=eventId;
+	}
 
 	public void setFoodId(int foodId) {
 		this.foodId = foodId;
 	}
 
 	public void setPrice(int price) {
-		this.price = price;
+		this.foodPrice = price;
 	}
 
 	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+		this.foodQuantity = quantity;
 	}
 
 	public void setEventId(int eventId) {
@@ -29,11 +37,11 @@ public class Food {
 	}
 
 	public int getPrice() {
-		return price;
+		return foodPrice;
 	}
 
 	public int getQuantity() {
-		return quantity;
+		return foodQuantity;
 	}
 
 	public int getEventId() {
@@ -44,19 +52,13 @@ public class Food {
 		return foodName;
 	}
 
-	public Food(int foodId, int price, int quantity, int eventId, String foodName) {
-		super();
-		this.foodId = foodId;
-		this.price = price;
-		this.quantity = quantity;
-		this.eventId = eventId;
-		this.foodName = foodName;
-	}
-
 	@Override
 	public String toString() {
-		return "Food [foodId=" + foodId + ", price=" + price + ", quantity=" + quantity + ", eventId=" + eventId
-				+ ", foodName=" + foodName + "]";
+		return "Food [foodId=" + foodId + ", foodPrice=" + foodPrice + ", foodQuantity=" + foodQuantity + ", eventId="
+				+ eventId + ", foodName=" + foodName + "]";
 	}
+
+	
+	
 
 }
