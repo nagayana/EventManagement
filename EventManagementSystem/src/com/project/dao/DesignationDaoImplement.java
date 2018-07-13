@@ -21,12 +21,12 @@ public class DesignationDaoImplement implements DesignationDaoInterface {
 		
 			Class.forName("org.postgresql.Driver");
 			con=DriverManager.getConnection("jdbc:postgresql://127."
-					+ "0.0.1:5432/eventmanagementsystem", "postgres", "admin");
+					+ "0.0.1:5432/eventmanagement", "postgres", "admin");
 			
 		    int id=designation.getDesignationId();
 		    String name=designation.getDesignationName();
 		    
-		    psmt=con.prepareStatement("insert into attraction values(?,?)");
+		    psmt=con.prepareStatement("insert into designation values(?,?)");
 		    psmt.setInt(1, id);
 		    psmt.setString(2, name);
 		   
@@ -43,7 +43,7 @@ public class DesignationDaoImplement implements DesignationDaoInterface {
 	
 	public boolean deleteDesignation(int designationId)throws SQLException, ClassNotFoundException {
 		Class.forName("org.postgresql.Driver");
-		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagementsystem",
+		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement",
 				"postgres", "admin");
 		smt=con.createStatement();
 		String s="delete from designation where desiganation_id="+designationId;
@@ -65,7 +65,7 @@ public class DesignationDaoImplement implements DesignationDaoInterface {
 
 	public Designation searchDesignation(int designationId) throws SQLException, ClassNotFoundException{
 		Class.forName("org.postgresql.Driver");
-		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagementsystem",
+		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement",
 				"postgres", "admin");
 		smt=con.createStatement();
 		ResultSet rs=smt.executeQuery("select * from designation where designation_id="+designationId);
