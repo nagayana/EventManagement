@@ -3,7 +3,7 @@ package com.project.pojo;
 public class Employee {
 
 	private int employeeId, designationId;
-	private String employeeName, type, username, password;
+	private String firstName,lastName, type, userName, password;
 
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
@@ -13,16 +13,28 @@ public class Employee {
 		this.designationId = designationId;
 	}
 
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
 
 	public void setPassword(String password) {
@@ -37,36 +49,28 @@ public class Employee {
 		return designationId;
 	}
 
-	public String getEmployeeName() {
-		return employeeName;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", designationId=" + designationId + ", employeeName="
-				+ employeeName + ", type=" + type + ", username=" + username + ", password=" + password + "]";
-	}
-
+	
 	public String getType() {
 		return type;
 	}
 
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public Employee(int employeeId, int designationId, String employeeName, String type, String username,
-			String password) {
+	public Employee(int employeeId,String firstName,String lastName,int designationId,String type,String userName,String password) {
 		super();
+		
 		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.designationId = designationId;
-		this.employeeName = employeeName;
 		this.type = type;
-		this.username = username;
+		this.userName = userName;
 		this.password = password;
 	}
 }
