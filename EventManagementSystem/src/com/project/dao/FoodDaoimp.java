@@ -19,7 +19,6 @@ public class FoodDaoimp implements FoodDao{
 		Connection connection = null;
 		Statement smt= null;
 		List<Food> foodList=new ArrayList<>();
-		ArrayList<Food> result = new ArrayList<Food>();
 		
 			Class.forName("org.postgresql.Driver");
 			connection=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement", "postgres", "admin");
@@ -48,41 +47,36 @@ public class FoodDaoimp implements FoodDao{
 	}
 
 	@Override
-	public boolean insertFood(Food food1) throws ClassNotFoundException, SQLException {
+
+	public boolean insertFood(Food food) throws SQLException, ClassNotFoundException {
 		Connection connection=null; 
 		PreparedStatement pstmt=null;
 		
 			Class.forName("org.postgresql.Driver");
+
 			connection=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement", "postgres", "admin");
 			pstmt=connection.prepareStatement("insert into food values(?,?,?,?,?)");
-			pstmt.setInt(1,food1.getFoodId());
-			pstmt.setString(2,food1.getFoodName());
-			pstmt.setInt(3,food1.getPrice());
-			pstmt.setInt(4,food1.getQuantity());
-			pstmt.setInt(5,food1.getEventId() );
+			pstmt.setInt(1,food.getFoodId());
+			pstmt.setString(2,food.getFoodName());
+			pstmt.setInt(3,food.getPrice());
+			pstmt.setInt(4,food.getQuantity());
+			pstmt.setInt(5,food.getEventId() );
 			int rows=pstmt.executeUpdate();
+			if(rows>0)
+				return true;
+			else
+				return false;
+	}
 			
 		
-		if(rows>0)
-			{
-			     System.out.println("Record Inserted");return true;
-			}
-		    
-		else
-			{
-			     System.out.println("Unable to Insert Record");return false;
-			}
-		    
 		
 		
-		
-	}
+
 
 	@Override
 	public boolean deleteFood(String foodName,int eventId) throws ClassNotFoundException, SQLException {
 		
 		Connection connection = null;
-		PreparedStatement pstmt = null;
 		
 			Class.forName("org.postgresql.Driver");
 			connection=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement", "postgres", "admin");
@@ -95,12 +89,13 @@ public class FoodDaoimp implements FoodDao{
 			else
 				return false;
 
+
 	}
+
 
 	
 	public boolean updateFood(String foodName, int eventId,int quantity) throws ClassNotFoundException, SQLException {
 		Connection connection = null;
-		PreparedStatement pstmt = null;
 		
 			Class.forName("org.postgresql.Driver");
 			connection=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement", "postgres", "admin");
@@ -112,7 +107,13 @@ public class FoodDaoimp implements FoodDao{
 				return true;
 			else
 				return false;
-	}
-
+         }
 }
+
+	
+
+
+
+
+
 
