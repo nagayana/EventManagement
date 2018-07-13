@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import com.project.pojo.Event;
 
-public class Athenticationimp implements Authentication {
+public class AthenticationImp implements Authentication {
 	String enteredPassword;
 
 	@Override

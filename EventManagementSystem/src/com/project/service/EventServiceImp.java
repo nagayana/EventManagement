@@ -45,7 +45,7 @@ public class EventServiceImp implements EventService{
 		return result;
 	}
 	
-	public ArrayList<Event> getAllEvents()
+	public ArrayList<Event>getAllEvents()
 	{
 		EventDaoImp daoObj = new EventDaoImp();
 		ArrayList<Event> events = daoObj.getAllEvents();

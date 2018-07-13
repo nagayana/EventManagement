@@ -51,7 +51,7 @@ public class GuestListImp implements GuestListDao {
 	}
 
 	@Override
-	public boolean insertGuest(int eventId) {
+	public boolean insertGuest(GuestList guest) {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		try {
