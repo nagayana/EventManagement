@@ -8,8 +8,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class EventDaoimp implements EventDao {
+public class EventDaoImp implements EventDao {
 	int eventId;
 	String eventNAme, location, time, registrationDeadline, activeRegistration;
 	Event event = null;
@@ -144,7 +145,31 @@ public class EventDaoimp implements EventDao {
 		 deleteEvent(eventId);
          insertEvent(event);
 		return true;
-
-
-}
+	}
+	
+	public ArrayList<Event> getAllEvents()
+	{
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ArrayList<Event> events = new ArrayList<>();
+		
+		try {
+				Class.forName("org.postgresql.Driver");
+				connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres",
+															"kanishka");
+				pstmt = connection.prepareStatement("select * from Events");
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()==true)
+				{
+					Event event = new Event(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getInt(7));
+					events.add(event);
+				}
+				
+		}
+		catch(Exception e)
+		{
+			
+		}
+		return events;
+	}
 }
