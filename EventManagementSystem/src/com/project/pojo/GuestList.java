@@ -1,9 +1,10 @@
 package com.project.pojo;
 
 public class GuestList {
-	String designationId,eventId;
+	int designationId;
+	int eventId;
 
-	public String getDesignationId() {
+	public int getDesignationId() {
 		return designationId;
 	}
 
@@ -12,21 +13,21 @@ public class GuestList {
 		return "GuestList [designationId=" + designationId + ", eventId=" + eventId + "]";
 	}
 
-	public GuestList(String designationId, String eventId) {
+	public GuestList(int designationId, int eventId) {
 		super();
 		this.designationId = designationId;
 		this.eventId = eventId;
 	}
 
-	public String getEventId() {
+	public int getEventId() {
 		return eventId;
 	}
 
-	public void setDesignationId(String designationId) {
+	public void setDesignationId(int designationId) {
 		this.designationId = designationId;
 	}
 
-	public void setEventId(String eventId) {
+	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
 
