@@ -19,7 +19,7 @@ public class FoodDaoimp implements FoodDao{
 		try {
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres",
-					"kanishka");
+					"admin");
 			pstmt = connection.prepareStatement("select* from food where Food_Id =(?)");
 			pstmt.setInt(1,food.getFoodId());
 
@@ -60,12 +60,12 @@ public class FoodDaoimp implements FoodDao{
 	}
 
 	@Override
-	public boolean insertFood(String foodName) {
+	public boolean insertFood(Food food) {
 		Connection connection=null; 
 		PreparedStatement pstmt=null;
 		try {
 			Class.forName("org.postgresql.Driver");
-			connection=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "kanishka");
+			connection=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "admin");
 			pstmt=connection.prepareStatement("insert into food values(?,?,?,?,?)");
 			pstmt.setInt(1,food.getFoodId());
 			pstmt.setString(2,food.getFoodName());
@@ -99,7 +99,7 @@ public class FoodDaoimp implements FoodDao{
 		
 		
 	}
-		return true;
+		return false;
 	}
 
 	@Override
@@ -110,9 +110,9 @@ public class FoodDaoimp implements FoodDao{
 		try {
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres",
-					"kanishka");
+					"admin");
 			pstmt = connection.prepareStatement("delete from Events where id=(?)");
-			pstmt.setInt(1,food.getFoodId());
+			pstmt.setString(1,food.getFoodName());
 
 			int rows = pstmt.executeUpdate();
 
@@ -136,14 +136,17 @@ public class FoodDaoimp implements FoodDao{
 			}
 
 		}
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean updateFood(String foodName) {
 		deleteFood(foodName);
-        insertFood(foodName);
-	   return true;
+        insertFood(food);
+	   return false;
 	}
+
+
+
 
 }

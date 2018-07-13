@@ -22,7 +22,7 @@ public class EventDaoImp implements EventDao {
 		try {
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres",
-					"kanishka");
+					"admin");
 			pstmt = connection.prepareStatement("select* from Events where Event_Id =(?)");
 			pstmt.setInt(1, event.getEventID());
 
@@ -67,7 +67,7 @@ public class EventDaoImp implements EventDao {
 		try {
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres",
-					"kanishka");
+					"admin");
 			pstmt = connection.prepareStatement("insert into Events values(?,?,?,?,?,?,?)");
 			pstmt.setInt(1, event.getEventID());
 			pstmt.setString(2, event.getEventName());
@@ -98,7 +98,7 @@ public class EventDaoImp implements EventDao {
 			}
 
 		}
-		return true;
+		return false;
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class EventDaoImp implements EventDao {
 		try {
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres",
-					"kanishka");
+					"admin");
 			pstmt = connection.prepareStatement("delete from Events where Event_Id =(?)");
 			pstmt.setInt(1, event.getEventID());
 
@@ -135,7 +135,7 @@ public class EventDaoImp implements EventDao {
 			}
 
 		}
-		return true;
+		return false;
 
 	}
 	
@@ -144,7 +144,7 @@ public class EventDaoImp implements EventDao {
 	public boolean updateEvent(int eventId, Event newEvent) {
 		 deleteEvent(eventId);
          insertEvent(event);
-		return true;
+		return false;
 	}
 	
 	public ArrayList<Event> getAllEvents()
