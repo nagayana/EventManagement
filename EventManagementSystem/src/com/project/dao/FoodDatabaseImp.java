@@ -12,7 +12,7 @@ public class FoodDatabaseImp implements FoodDatabaseDao{
 	@Override
 	public ArrayList<FoodDatabase> getFoodList(){
 		ArrayList<FoodDatabase> foods = new ArrayList<>();
-		Connection connection = DriverManager.getConnection(url);
+		Connection connection = D
 		PreparedStatement pStatement = connection.prepareStatement("select * from fooddatabase");
 		
 		ResultSet rs = pStatement.executeQuery();
