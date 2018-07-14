@@ -12,6 +12,10 @@ public class Food {
 		this.eventId=eventId;
 	}
 
+	public Food() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setFoodId(int foodId) {
 		this.foodId = foodId;
 	}
