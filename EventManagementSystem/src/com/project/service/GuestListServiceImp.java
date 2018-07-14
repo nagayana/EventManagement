@@ -1,5 +1,6 @@
 package com.project.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.project.dao.GuestListDao;
@@ -9,14 +10,14 @@ import com.project.pojo.GuestList;
 public class GuestListServiceImp implements GuestListService{
 
 	@Override
-	public ArrayList<GuestList> generateGuestList(int eventId) {
+	public ArrayList<GuestList> generateGuestList(int eventId) throws ClassNotFoundException, SQLException {
 		GuestListDao guestdao=new GuestListImp(); 
-		return guestdao.searchGuestList(eventId);
+		return guestdao.getEventGuestList(eventId);
 		
 	}
 
 	@Override
-	public boolean upadteGuestList(int designationId, int eventId, int newdesignationId) {
+	public boolean upadteGuestList(int designationId, int eventId, int newdesignationId) throws ClassNotFoundException, SQLException {
 		GuestListDao guestdao=new GuestListImp(); 
 		guestdao.deleteGuest(designationId,eventId);
 		GuestList guestList=new GuestList();
@@ -27,14 +28,14 @@ public class GuestListServiceImp implements GuestListService{
 	}
 
 	@Override
-	public boolean deleteGuestList(int designationId, int eventId) {
+	public boolean deleteGuestList(int designationId, int eventId) throws ClassNotFoundException, SQLException {
 		GuestListDao guestdao=new GuestListImp(); 
 		return guestdao.deleteGuest(designationId,eventId);
 		
 	}
 
 	@Override
-	public boolean insertGuestList(int designationId, int eventId) {
+	public boolean insertGuestList(int designationId, int eventId) throws ClassNotFoundException, SQLException {
 		GuestListDao guestdao=new GuestListImp();
 		GuestList guest=new GuestList(designationId,eventId);
 		return guestdao.insertGuest(guest);

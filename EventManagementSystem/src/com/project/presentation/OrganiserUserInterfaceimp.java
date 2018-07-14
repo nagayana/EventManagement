@@ -58,8 +58,7 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 		case 2: {
 			ArrayList<Event> eventList = eventservice.getAllEvents();
 			for (Event emp : eventList) {
-				emp.getEventID();
-				emp.getEventName();
+				System.out.print("\nevent id" +emp.getEventID() + "event name" +emp.getEventName());
 			}
 			System.out.println("choose the eventId of the event you want to see the details of");
 			eventno = sc.nextInt();
@@ -67,7 +66,8 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 					+ "2.show guest list" + "3.show food list" + "4.show registration list");
 			switch (chooseeventdetails) {
 			case 1: {
-				eventservice.getEvent(eventno);
+				System.out.println("envent details are" +eventservice.getEvent(eventno));
+				
 				break;
 			}
 			case 2: {
@@ -79,7 +79,7 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 					if (chooseForGuestList == 1) {
 
 						try {
-							designationservice.getAllDesignations();
+							System.out.println("designations are " +designationservice.getAllDesignations());
 						} catch (ClassNotFoundException | SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
