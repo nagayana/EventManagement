@@ -1,5 +1,6 @@
 package com.project.presentation;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +11,8 @@ import com.project.service.DesignationService;
 import com.project.service.DesignationServiceImp;
 import com.project.service.EventService;
 import com.project.service.EventServiceImp;
+import com.project.service.FoodService;
+import com.project.service.FoodServiceImp;
 import com.project.service.GuestListService;
 import com.project.service.GuestListServiceImp;
 
@@ -20,7 +23,8 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 	GuestList guest;
 	EventService eventservice = new EventServiceImp();
 	GuestListService guestservice = new GuestListServiceImp();
-	DesignationService designation = new DesignationServiceImp();
+	DesignationService designationservice = new DesignationServiceImp();
+	FoodService foodservice=new FoodServiceImp(); 
 
 	@Override
 	public void showMenu() {
@@ -67,40 +71,84 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 				break;
 			}
 			case 2: {
-				if(guestservice.generateGuestList(eventno).isEmpty()){
+				if (guestservice.generateGuestList(eventno).isEmpty()) {
 					System.out.println("guest list is empty");
 					System.out.println("do you want to add to guest List?"
-							+ "1. for adding to guest List 2. to show menu"
-							+ " exit");
-					int chooseForGuestList=sc.nextInt();
-					if(chooseForGuestList==1){
-						
-						//show kra designation
-						System.out.println("which designations you want to add");
-						int designationId=sc.nextInt();
-						int eventId=sc.nextInt();
-						guestservice.insertGuestList(designationId,eventId) ;
-						
-					}
-					else if(chooseForGuestList==2){
-						
-						
-					}
+							+ "1. for adding to guest List 2. to show menu" + " 3.exit");
+					int chooseForGuestList = sc.nextInt();
+					if (chooseForGuestList == 1) {
+
+						try {
+							designationservice.getAllDesignations();
+						} catch (ClassNotFoundException | SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						boolean addtoGuestList = true;
+						while (addtoGuestList) {
+							System.out.println("which designations you want to add");
+							int designationId = sc.nextInt();
+							int eventId = sc.nextInt();
+							guestservice.insertGuestList(designationId, eventId);
+							System.out.println("do you want to add more? 1.yes 2.no");
+							int addMore = sc.nextInt();
+							if (addMore == 1) {
+								addtoGuestList = true;
+							} else
+								addtoGuestList = false;
+						}
+
+					} else if (chooseForGuestList == 2) {
+						showMenu();
+
+					} else
+						System.exit(0);
 				}
-				
-					break;
+
+				break;
 			}
-			
-		
 
-		
-		case 3: {
+			case 3: {
+				if (guestservice.generateGuestList(eventno).isEmpty()) {
+					System.out.println("guest list is empty");
+					System.out.println("do you want to add to guest List?"
+							+ "1. for adding to guest List 2. to show menu" + " 3.exit");
+					int chooseForGuestList = sc.nextInt();
+					if (chooseForGuestList == 1) {
 
-		} 
+						try {
+							designationservice.getAllDesignations();
+						} catch (ClassNotFoundException | SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						boolean addtoGuestList = true;
+						while (addtoGuestList) {
+							System.out.println("which designations you want to add");
+							int designationId = sc.nextInt();
+							int eventId = sc.nextInt();
+							guestservice.insertGuestList(designationId, eventId);
+							System.out.println("do you want to add more? 1.yes 2.no");
+							int addMore = sc.nextInt();
+							if (addMore == 1) {
+								addtoGuestList = true;
+							} else
+								addtoGuestList = false;
+						}
+
+					} else if (chooseForGuestList == 2) {
+						showMenu();
+
+					} else
+						System.exit(0);
+				}
+
+
+			}
+			}
 		}
+
 		}
 
 	}
-
-}
 }
