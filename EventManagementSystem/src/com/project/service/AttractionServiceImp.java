@@ -23,7 +23,7 @@ public class AttractionServiceImp implements AttractionService {
 	@Override
 	public List<Attraction> getAttractionList(int eventId) throws ClassNotFoundException, SQLException {
 		AttractionDaoImplement attractionObj=new AttractionDaoImplement();
-		return attractionObj.searchAttraction(eventId);
+		return attractionObj.getEventAttractions(eventId);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import com.project.pojo.FoodDatabase;
 
 public class FoodDatabaseImp implements FoodDatabaseDao{
-	
+	int price;
 	@Override
 
 	
@@ -26,4 +26,15 @@ public class FoodDatabaseImp implements FoodDatabaseDao{
 		}
 		return foodList;
 	}
+	public int getFoodListbyPrice(String foodName) throws SQLException,ClassNotFoundException{
+
+		
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pStatement = connection.prepareStatement("select price from fooddatabase where food_name=?");
+		ResultSet rs = pStatement.executeQuery();
+		while(rs.next()){
+			 price = (rs.getInt(1));
+			
+		}
+		return price; }
 }

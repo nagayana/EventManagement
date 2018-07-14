@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.project.helper.InputDetails;
+import com.project.pojo.Attraction;
 import com.project.pojo.Event;
 import com.project.pojo.Food;
 import com.project.pojo.GuestList;
+import com.project.service.AttractionService;
+import com.project.service.AttractionServiceImp;
 import com.project.service.DesignationService;
 import com.project.service.DesignationServiceImp;
 import com.project.service.EventService;
@@ -17,6 +20,8 @@ import com.project.service.FoodService;
 import com.project.service.FoodServiceImp;
 import com.project.service.GuestListService;
 import com.project.service.GuestListServiceImp;
+import com.project.service.RegisterService;
+import com.project.service.RegisterServiceImp;
 
 public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 	int chooseeventdetails, eventno, option;
@@ -28,6 +33,8 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 	DesignationService designationservice = new DesignationServiceImp();
 	FoodService foodservice=new FoodServiceImp(); 
 	FoodDatabaseServiceImp foodDBservice= new FoodDatabaseServiceImp();
+	AttractionService attractionservice= new AttractionServiceImp();
+	RegisterService registration=new RegisterServiceImp();
 
 	@Override
 	public void showMenu() {
@@ -141,7 +148,9 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 						if (chooseForFoodList == 1) {
 							boolean addtoFoodList = true;
 							while (addtoFoodList) {
-						//		foodservice.insertFood(food); 
+						        Food food=new Food();
+								food=InputDetails.acceptFoodListDetails();
+								foodservice.insertFood(food); 
 								System.out.println("do you want to add more? 1.yes 2.no");
 								int addMore = sc.nextInt();
 								if (addMore == 1) {
@@ -163,11 +172,60 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 
 
 			}
-			case 4:
+			case 4:{
+				try {
+					if (attractionservice.getAttractionList(eventno).isEmpty()) {
+						System.out.println("attraction list is empty");
+						System.out.println("do you want to add to food List?"
+								+ "1. for adding to attraction list 2. to show menu" + " 3.exit");
+						int chooseForattractionList = sc.nextInt();
+						if ( chooseForattractionList== 1) {
+							boolean addtoAttractionList = true;
+							while (addtoAttractionList) {
+						        Attraction attraction=new Attraction();
+								attraction=InputDetails.acceptAttractionListDetails();
+								try {
+									attractionservice.insertAttraction(attraction);
+								} catch (ClassNotFoundException | SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} 
+								System.out.println("do you want to add more? 1.yes 2.no");
+								int addMore = sc.nextInt();
+								if (addMore == 1) {
+									addtoAttractionList= true;
+								} else
+									addtoAttractionList = false;
+							}
+
+						} else if (chooseForattractionList == 2) {
+							showMenu();
+
+						} else
+							System.exit(0);
+					}
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+				
+			case 5: {
+				
+						
+
+				
+		
+		}
+
+				
+				
+			}	
+			}
 			}
 		}
 
 		}
 
-	}
-}
+	
+
