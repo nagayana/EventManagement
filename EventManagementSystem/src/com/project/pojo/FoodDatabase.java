@@ -5,10 +5,10 @@ public class FoodDatabase {
 	private int foodId;
 	private double price;
 	private String foodName;
-	public FoodDatabase(int foodId, double price, String foodName) {
+	public FoodDatabase(int foodId, String foodName, int foodPrice) {
 		super();
 		this.foodId = foodId;
-		this.price = price;
+		this.price = foodPrice;
 		this.foodName = foodName;
 	}
 	public FoodDatabase() {
