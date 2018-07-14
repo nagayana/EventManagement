@@ -1,127 +1,56 @@
 package com.project.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.project.pojo.Attraction;
-import com.project.pojo.Event;
 import com.project.pojo.GuestList;
 
 public class GuestListImp implements GuestListDao {
-	GuestList guest = null;
 
 	@Override
-	public ArrayList<GuestList> searchGuestList(int eventId) {
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		try { ArrayList<GuestList> guestList=new ArrayList<>();
-			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "admin");
-			pstmt = connection.prepareStatement("select* from Events where Event_Id =(?)");
-			pstmt.setInt(1, guest.getEventId());
-
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next() == true) {
-				guest.setDesignationId(rs.getInt(1));
-				guest.setEventId(rs.getInt(2));
-                guestList.add(guest);
+	public ArrayList<GuestList> getEventGuestList(int eventId) throws SQLException,ClassNotFoundException{
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("select * from guestlist where event_id = ?");
+		pstmt.setInt(1, eventId);
+		ResultSet rs = pstmt.executeQuery();
+		ArrayList<GuestList> guestList=new ArrayList<>();
+		while(rs.next()) {
+			GuestList gListElement = new GuestList(rs.getInt(1), rs.getInt(2));
+                guestList.add(gListElement);
 			}
-
-		} catch (ClassNotFoundException exception) {
-			exception.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			// 5.close the connection
-			try {
-				connection.close();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
-
-		}
-
 		return guestList;
 	}
 
 	@Override
-	public boolean insertGuest(GuestList guest) {
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		try {
-			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "admin");
-			pstmt = connection.prepareStatement("insert into guestlist values(?,?)");
-			pstmt.setInt(1, guest.getEventId());
-			pstmt.setInt(2, guest.getDesignationId());
-			int rows = pstmt.executeUpdate();
-
-			if (rows > 0)
-				System.out.println("Record Inserted");
-			else
-				System.out.println("Unable to Insert Record");
-
-		} catch (ClassNotFoundException exception) {
-			exception.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			// 5.close the connection
-			try {
-				connection.close();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
-
+	public boolean insertGuest(GuestList guest) throws ClassNotFoundException, SQLException {
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("insert into guestlist values(?,?)");
+		pstmt.setInt(1, guest.getDesignationId());
+		pstmt.setInt(2, guest.getEventId());
+		int result = pstmt.executeUpdate();
+		if (result > 0){
+			return true;
 		}
-		return false;
-
+		else{
+			return false;
+		}
 	}
 
 	@Override
-	public boolean deleteGuest(int designationId, int eventId) {
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		try {
-			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "admin");
-			pstmt = connection.prepareStatement("delete from guestlist where Event_Id =(?)and Designation_Id=(?)");
-			pstmt.setInt(1, guest.getEventId());
-			pstmt.setInt(2, guest.getDesignationId());
-
-			int rows = pstmt.executeUpdate();
-
-			if (rows > 0)
-				System.out.println("Record deleted");
-			else
-				System.out.println("Unable to delete Record");
-
-		} catch (ClassNotFoundException exception) {
-			exception.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			// 5.close the connection
-			try {
-				connection.close();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
-
+	public boolean deleteGuest(int designationId, int eventId) throws SQLException,ClassNotFoundException{
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("delete from guestlist where event_id = ? and designation_id = ?");
+		pstmt.setInt(1, eventId);
+		pstmt.setInt(2, designationId);
+		int result = pstmt.executeUpdate();
+		if (result > 0){
+				return true;
 		}
-		return false;
-
+		else{
+				return false;
+		}
 	}
 
 }

@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.project.pojo.Designation;
+import com.project.pojo.Employee;
 
 public interface DesignationService {
-	ArrayList<Designation> searchDesignation(int designationId) throws ClassNotFoundException, SQLException;
+	ArrayList<Designation> getAllDesignations() throws ClassNotFoundException, SQLException;
+	
 }

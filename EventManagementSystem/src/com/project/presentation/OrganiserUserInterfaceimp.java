@@ -1,45 +1,65 @@
 package com.project.presentation;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.project.helper.InputDetails;
 import com.project.pojo.Event;
+import com.project.pojo.GuestList;
+import com.project.service.DesignationService;
+import com.project.service.DesignationServiceImp;
 import com.project.service.EventService;
 import com.project.service.EventServiceImp;
+import com.project.service.FoodService;
+import com.project.service.FoodServiceImp;
 import com.project.service.GuestListService;
 import com.project.service.GuestListServiceImp;
 
-
 public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
-	int choice, chooseeventdetails, eventno;
+	int chooseeventdetails, eventno, option;
 	Scanner sc = new Scanner(System.in);
 	Event event;
+	GuestList guest;
 	EventService eventservice = new EventServiceImp();
-	GuestListService guestservice=new GuestListServiceImp();
+	GuestListService guestservice = new GuestListServiceImp();
+	DesignationService designationservice = new DesignationServiceImp();
+	FoodService foodservice=new FoodServiceImp(); 
 
 	@Override
-	public void showmenu() {
+	public void showMenu() {
 		System.out.println("welcome to the event magement system,please" + " choose the option from the menu");
 		System.out.println("1.Create new Event " + "2.Show Event Details " + "3.Update Event Details");
 	}
 
 	@Override
 	public void actionPerform(int choice) {
-		sc.nextInt(choice);
-		this.choice = choice;
+
 		System.out.println("You have selected choice number" + choice);
 		switch (choice) {
 		case 1: {
 			event = InputDetails.acceptEventDetails();
 			eventservice.insertEvent(event);
+			System.out.println("Do you want to add anything or exit"
+					+ "press 1 for updating details and 2. for showing  menu again" + "3. for exit");
+			option = sc.nextInt();
+			if (option == 1) {
+				actionPerform(3);
+			} else if (option == 2) {
+				showMenu();
+			}
+
+			else
+				System.exit(0);
+
 			break;
+
 		}
 		case 2: {
 			ArrayList<Event> eventList = eventservice.getAllEvents();
 			for (Event emp : eventList) {
-				event.getEventID();
-				event.getEventName();
+				emp.getEventID();
+				emp.getEventName();
 			}
 			System.out.println("choose the eventId of the event you want to see the details of");
 			eventno = sc.nextInt();
@@ -48,21 +68,87 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 			switch (chooseeventdetails) {
 			case 1: {
 				eventservice.getEvent(eventno);
-                
+				break;
 			}
 			case 2: {
-				guestservice.generateGuestList(eventno);
+				if (guestservice.generateGuestList(eventno).isEmpty()) {
+					System.out.println("guest list is empty");
+					System.out.println("do you want to add to guest List?"
+							+ "1. for adding to guest List 2. to show menu" + " 3.exit");
+					int chooseForGuestList = sc.nextInt();
+					if (chooseForGuestList == 1) {
+
+						try {
+							designationservice.getAllDesignations();
+						} catch (ClassNotFoundException | SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						boolean addtoGuestList = true;
+						while (addtoGuestList) {
+							System.out.println("which designations you want to add");
+							int designationId = sc.nextInt();
+							int eventId = sc.nextInt();
+							guestservice.insertGuestList(designationId, eventId);
+							System.out.println("do you want to add more? 1.yes 2.no");
+							int addMore = sc.nextInt();
+							if (addMore == 1) {
+								addtoGuestList = true;
+							} else
+								addtoGuestList = false;
+						}
+
+					} else if (chooseForGuestList == 2) {
+						showMenu();
+
+					} else
+						System.exit(0);
+				}
+
+				break;
+			}
+
+			case 3: {
+				if (guestservice.generateGuestList(eventno).isEmpty()) {
+					System.out.println("guest list is empty");
+					System.out.println("do you want to add to guest List?"
+							+ "1. for adding to guest List 2. to show menu" + " 3.exit");
+					int chooseForGuestList = sc.nextInt();
+					if (chooseForGuestList == 1) {
+
+						try {
+							designationservice.getAllDesignations();
+						} catch (ClassNotFoundException | SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						boolean addtoGuestList = true;
+						while (addtoGuestList) {
+							System.out.println("which designations you want to add");
+							int designationId = sc.nextInt();
+							int eventId = sc.nextInt();
+							guestservice.insertGuestList(designationId, eventId);
+							System.out.println("do you want to add more? 1.yes 2.no");
+							int addMore = sc.nextInt();
+							if (addMore == 1) {
+								addtoGuestList = true;
+							} else
+								addtoGuestList = false;
+						}
+
+					} else if (chooseForGuestList == 2) {
+						showMenu();
+
+					} else
+						System.exit(0);
+				}
+
 
 			}
 			}
-			break;
-
 		}
-		case 3: {
 
-		}
 		}
 
 	}
-
 }
