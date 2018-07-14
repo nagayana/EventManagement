@@ -5,13 +5,12 @@ public class Designation {
 	private String designationName;
 
 	public Designation(int designationId, String designationName) {
-		super();
 		this.designationId = designationId;
 		this.designationName = designationName;
 	}
 
 	public Designation() {
-		super();
+		
 	}
 	
 	

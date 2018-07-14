@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.project.pojo.Attraction;
@@ -20,7 +21,7 @@ public class AttractionDaoImplement implements AttractionDaoInterface {
 		
 			Class.forName("org.postgresql.Driver");
 			con=DriverManager.getConnection("jdbc:postgresql://127."
-					+ "0.0.1:5432/eventmanagementsystem", "postgres", "admin");
+					+ "0.0.1:5432/eventmanagement", "postgres", "admin");
 			
 		    int id=attraction.getAttractionId();
 		    String coordinatorName=attraction.getCoordinatorName();
@@ -39,22 +40,23 @@ public class AttractionDaoImplement implements AttractionDaoInterface {
 		    
 		    int rows=psmt.executeUpdate();
 		    if(rows>0)
-				System.out.println("Record Inserted");
+			  return true;
 			else
-				System.out.println("Unable to Insert Record");
-		return false;
+				return false;
 	}
 
 	
 	public boolean deleteAttraction(int attractionId)throws SQLException, ClassNotFoundException {
 		Class.forName("org.postgresql.Driver");
-		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagementsystem",
+		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement",
 				"postgres", "admin");
 		smt=con.createStatement();
 		String s="delete from attraction where attraction_id="+attractionId;
-		smt.executeUpdate(s);
-	    
-		return false;
+		int check=smt.executeUpdate(s);
+	    if(check>0)
+	    	return true;
+	    else
+	    	return false;
 	}
 
 
@@ -65,7 +67,33 @@ public class AttractionDaoImplement implements AttractionDaoInterface {
 	} 
 
 
-	public Attraction searchAttraction(int attractionId) throws SQLException, ClassNotFoundException{
+	public List<Attraction> searchAttraction(int eventId) throws SQLException, ClassNotFoundException{
+		Class.forName("org.postgresql.Driver");
+		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagementsystem",
+				"postgres", "admin");
+		smt=con.createStatement();
+		ResultSet rs=smt.executeQuery("select * from attraction where event_id="+eventId);
+		List<Attraction> attractionList=new ArrayList<>();
+	    Attraction obj=new Attraction();
+	    if(rs.next()==true)
+	    {
+	    	obj.setAttractionId(rs.getInt(1));
+		    obj.setName(rs.getString(2));
+		    obj.setCoordinatorName(rs.getString(3));
+		    obj.setDuration(rs.getInt(4));
+		    obj.setPrice(rs.getInt(5));
+		    obj.setEventId(rs.getInt(6));
+		    attractionList.add(obj);
+	    }
+	    
+	    return attractionList;
+	    
+	    
+	}
+
+
+	@Override
+	public Attraction getAttractionById(int attractionId) throws SQLException, ClassNotFoundException {
 		Class.forName("org.postgresql.Driver");
 		con=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagementsystem",
 				"postgres", "admin");
@@ -83,8 +111,6 @@ public class AttractionDaoImplement implements AttractionDaoInterface {
 	    }
 	    
 	    return obj;
-	    
-	    
 	}
 
 }
