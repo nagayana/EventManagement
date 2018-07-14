@@ -3,6 +3,7 @@ package com.project.helper;
 import java.util.Scanner;
 
 import com.project.pojo.Event;
+import com.project.pojo.Food;
 import com.project.pojo.GuestList;
 
 public class InputDetails {
@@ -29,11 +30,15 @@ public class InputDetails {
 		
 	}
 
-	public static GuestList acceptGuestListDetails() {
+	public static Food acceptFoodListDetails() {
 		Scanner sc = new Scanner(System.in);
-	    GuestList guestList=new GuestList();
-	    System.out.println("enter the ");
-		return guestList;
+	    Food foodList=new Food();
+	    System.out.println("enter the food ID ");
+	    foodList.setFoodId(sc.nextInt());
+	    System.out.println("enter the food name ");
+	    foodList.setFoodName(sc.next());
+	    
+		return foodList;
 	}
 
 }
