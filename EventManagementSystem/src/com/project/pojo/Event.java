@@ -1,7 +1,9 @@
 package com.project.pojo;
 
 public class Event {
-
+    public Event(){
+    	
+    }
 
 	
 	private int eventID;

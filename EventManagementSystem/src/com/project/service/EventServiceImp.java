@@ -41,9 +41,11 @@ public class EventServiceImp implements EventService{
 		return DbObject.insertEvent(event);
 	}
 	
+
 	@Override
 	public ArrayList<Event> getAllEvents(){
 		return DbObject.getAllEvents();
+
 	}
 
 }

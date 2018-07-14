@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class EventDaoImp implements EventDao {
 
 	@Override
-	public Event searchEvent(int eventId){
+	public Event searchEvent(int eventId) {
 		Connection connection = DriverManager.getConnection(url);
 		PreparedStatement pstmt = connection.prepareStatement("select * from Events where Event_Id =(?)");
 		pstmt.setInt(1, eventId);

@@ -19,6 +19,10 @@ public class GuestList {
 		this.eventId = eventId;
 	}
 
+	public GuestList() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getEventId() {
 		return eventId;
 	}
