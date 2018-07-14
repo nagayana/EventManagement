@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.EventListener;
+
 import com.project.pojo.GuestList;
 
 public class GuestListImp implements GuestListDao {
@@ -51,6 +53,22 @@ public class GuestListImp implements GuestListDao {
 		else{
 				return false;
 		}
+	}
+	
+	@Override
+	public ArrayList<Integer> getEventIdByDesignationId(int designationId) throws SQLException,ClassNotFoundException
+	{
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("select event_id from guestlist where designation_id = ?");
+		pstmt.setInt(1, designationId);
+		ResultSet rs = pstmt.executeQuery();
+		
+		ArrayList<Integer> eventIdList = new ArrayList<>();
+		while(rs.next())
+		{
+			eventIdList.add(rs.getInt(1));
+		}
+		return eventIdList;
 	}
 
 }

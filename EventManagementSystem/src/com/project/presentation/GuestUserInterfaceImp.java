@@ -3,34 +3,41 @@ package com.project.presentation;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import com.project.pojo.Event;
-import com.project.service.EventServiceImp;
+import com.project.service.GuestListServiceImp;
 import com.project.service.RegisterServiceImp;
 
 public class GuestUserInterfaceImp implements GuestUserInterface {
 	
-	private int choice;
-	private Scanner sc=new Scanner(System.in);
-	public void showMenu()
-	{
-		System.out.println("WELCOME TO THE EVENT MANAGEMENT SYSTEM\n\n"
-				+"HERE IS THE EVENT LIST");
-		EventServiceImp events=new EventServiceImp();
-    	ArrayList<Event> eventList=new ArrayList<>();
-    	for(Event event:eventList)
-    	{
-    		System.out.println(event);
-    	}
+	@Override
+	public void showMenu(int designationId)
+	{		
+		System.out.println("------ Your Event List ------");
+		ArrayList<Event> eventList = new ArrayList<>(); 
+		try{
+			eventList = new GuestListServiceImp().getGuestEventList(designationId);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error occurred please try again");
+		}
     	
-    	System.out.println("PLEASE ENTER YOUR CHOICES \n1. CANCEL YOUR REGISTRATION FOR ANY EVENT\n "
-    			+ "2. REGISTER FOR ANY EVENT");
-		
+    	for(Event event : eventList)
+    	{
+    		printGuestEvent(event);
+    	}
+    		
+	}
+	
+	private void printGuestEvent(Event event)
+	{
+		System.out.print(event.getEventID()+" : "+event.getEventName());
 	}
 	
 	public void actionPerformed(int employeeId)
 	{
-		choice=sc.nextInt();	
+		Scanner sc = new Scanner(System.in);
+		int choice=sc.nextInt();	
 		int eventId;
 		RegisterServiceImp obj=new RegisterServiceImp();
 	    switch(choice)
