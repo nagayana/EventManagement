@@ -19,7 +19,8 @@ public class GuestListImp implements GuestListDao {
 	public ArrayList<GuestList> searchGuestList(int eventId) {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
-		try { ArrayList<GuestList> guestList=new ArrayList<>();
+		 ArrayList<GuestList> guestList=new ArrayList<>();
+		try {
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "admin");
 			pstmt = connection.prepareStatement("select* from Events where Event_Id =(?)");

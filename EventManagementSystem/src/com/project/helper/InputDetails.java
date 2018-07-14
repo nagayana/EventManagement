@@ -3,8 +3,10 @@ package com.project.helper;
 import java.util.Scanner;
 
 import com.project.pojo.Event;
+import com.project.pojo.GuestList;
 
 public class InputDetails {
+	
 	
 	public static Event acceptEventDetails(){
 		Scanner sc = new Scanner(System.in);
@@ -25,6 +27,13 @@ public class InputDetails {
 		
 		
 		
+	}
+
+	public static GuestList acceptGuestListDetails() {
+		Scanner sc = new Scanner(System.in);
+	    GuestList guestList=new GuestList();
+	    System.out.println("enter the ");
+		return guestList;
 	}
 
 }

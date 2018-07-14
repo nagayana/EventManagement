@@ -22,15 +22,23 @@ public class GuestListServiceImp implements GuestListService{
 		GuestList guestList=new GuestList();
 		guestList.setDesignationId(newdesignationId);
 		guestList.setEventId(eventId);
-		guestdao.insertGuest(guestList);
-		return false;
+		return guestdao.insertGuest(guestList);
+		 
 	}
 
 	@Override
-	public boolean deleteGuestList(int eventId, int designationId) {
+	public boolean deleteGuestList(int designationId, int eventId) {
 		GuestListDao guestdao=new GuestListImp(); 
-		guestdao.deleteGuest(eventId,designationId);
-		return false;
+		return guestdao.deleteGuest(designationId,eventId);
+		
+	}
+
+	@Override
+	public boolean insertGuestList(int designationId, int eventId) {
+		GuestListDao guestdao=new GuestListImp();
+		GuestList guest=new GuestList(designationId,eventId);
+		return guestdao.insertGuest(guest);
+		
 	}
 
 }
