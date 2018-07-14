@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.project.pojo.Attraction;
 import com.project.pojo.Event;
@@ -15,20 +16,20 @@ public class GuestListImp implements GuestListDao {
 	GuestList guest = null;
 
 	@Override
-	public GuestList searchGuestList(int eventId) {
+	public ArrayList<GuestList> searchGuestList(int eventId) {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
-		try {
+		try { ArrayList<GuestList> guestList=new ArrayList<>();
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "admin");
 			pstmt = connection.prepareStatement("select* from Events where Event_Id =(?)");
 			pstmt.setInt(1, guest.getEventId());
 
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next() == true) {
+			while(rs.next() == true) {
 				guest.setDesignationId(rs.getInt(1));
 				guest.setEventId(rs.getInt(2));
-
+                guestList.add(guest);
 			}
 
 		} catch (ClassNotFoundException exception) {
@@ -47,7 +48,7 @@ public class GuestListImp implements GuestListDao {
 
 		}
 
-		return guest;
+		return guestList;
 	}
 
 	@Override

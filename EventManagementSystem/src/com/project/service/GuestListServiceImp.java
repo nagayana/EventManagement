@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.util.ArrayList;
+
 import com.project.dao.GuestListDao;
 import com.project.dao.GuestListImp;
 import com.project.pojo.GuestList;
@@ -7,22 +9,20 @@ import com.project.pojo.GuestList;
 public class GuestListServiceImp implements GuestListService{
 
 	@Override
-	public GuestList generateGuestList(int eventId) {
+	public ArrayList<GuestList> generateGuestList(int eventId) {
 		GuestListDao guestdao=new GuestListImp(); 
-		GuestList guestlist=guestdao.searchGuestList(eventId);
-		return guestlist;
+		return guestdao.searchGuestList(eventId);
+		
 	}
 
 	@Override
 	public boolean upadteGuestList(int designationId, int eventId, int newdesignationId) {
 		GuestListDao guestdao=new GuestListImp(); 
-		GuestList guestlist=guestdao.searchGuestList(eventId);
 		guestdao.deleteGuest(designationId,eventId);
-		guestlist.setDesignationId(newdesignationId);
-		guestlist.setEventId(newdesignationId);
-		guestdao.insertGuest(guestlist);
-		
-		
+		GuestList guestList=new GuestList();
+		guestList.setDesignationId(newdesignationId);
+		guestList.setEventId(eventId);
+		guestdao.insertGuest(guestList);
 		return false;
 	}
 

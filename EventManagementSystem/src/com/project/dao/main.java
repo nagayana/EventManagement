@@ -11,7 +11,7 @@ public class main {
 		//Attraction obj=new Attraction(7,"aaa","bbb",3,7,9);
 		//AttractionDaoImplement obj1=new AttractionDaoImplement();
 		Designation obj=new Designation(10,"it");
-		DesignationDaoImplement obj1=new DesignationDaoImplement();
+		DesignationDaoImp obj1=new DesignationDaoImp();
 		try {
 			obj1.insertDesignation(obj);
 			//obj1.deleteAttraction(5);

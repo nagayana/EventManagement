@@ -48,7 +48,7 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 			switch (chooseeventdetails) {
 			case 1: {
 				eventservice.getEvent(eventno);
-                Attraction attraction=;
+                
 			}
 			case 2: {
 				guestservice.generateGuestList(eventno);

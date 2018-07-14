@@ -1,10 +1,12 @@
 package com.project.dao;
 
+import java.util.ArrayList;
+
 import com.project.pojo.Event;
 import com.project.pojo.GuestList;
 
 public interface GuestListDao {
-	GuestList searchGuestList(int eventId);
+	ArrayList<GuestList> searchGuestList(int eventId);
 
 	boolean deleteGuest(int designationId,int eventId);
 
