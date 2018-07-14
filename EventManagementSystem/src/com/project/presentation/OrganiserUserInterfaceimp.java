@@ -39,6 +39,12 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 
 	@Override
 	public void actionPerform(int choice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*@Override
+	public void actionPerform(int choice) {
 
 		System.out.println("You have selected choice number" + choice);
 		switch (choice) {
@@ -169,5 +175,5 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 
 		}
 
-	}
+	}*/
 }
