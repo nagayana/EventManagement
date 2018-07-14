@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.project.pojo.Event;
 
 public interface EventDao {
-	Event searchEvent(int eventId) throws SQLException,ClassNotFoundException;
+	Event getEvent(int eventId) throws SQLException,ClassNotFoundException;
 	boolean insertEvent(Event event) throws SQLException,ClassNotFoundException;;
 	boolean deleteEvent(int eventId) throws SQLException,ClassNotFoundException;;
 	boolean updateEventName(int eventId,String newName) throws SQLException,ClassNotFoundException;;

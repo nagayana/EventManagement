@@ -1,10 +1,12 @@
 
 package com.project.service;
 
-import com.project.pojo.Event;
+import java.sql.SQLException;
+
+import com.project.pojo.Employee;
 
 public interface Authentication {
 	
-	public boolean authenticate(String userId,String password);
+	public Employee authenticate(int userId,String password) throws SQLException,ClassNotFoundException;
 
 }
