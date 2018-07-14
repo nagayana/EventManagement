@@ -1,18 +1,11 @@
 package com.project.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.project.pojo.Event;
 import com.project.pojo.GuestList;
 
 public interface GuestListDao {
-	ArrayList<GuestList> searchGuestList(int eventId);
-
-	boolean deleteGuest(int designationId,int eventId);
-
-	boolean insertGuest(GuestList guest);
-
-	
-
-
+	ArrayList<GuestList> getEventGuestList(int eventId) throws SQLException,ClassNotFoundException;
+	boolean insertGuest(GuestList guestListElement) throws SQLException,ClassNotFoundException;
+	boolean deleteGuest(int designationId,int eventId) throws SQLException,ClassNotFoundException;
 }
