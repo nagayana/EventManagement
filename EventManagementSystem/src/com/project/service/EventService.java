@@ -1,16 +1,17 @@
 package com.project.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.project.pojo.Event;
 
 public interface EventService {
-	Event getEvent(int eventId);
-	ArrayList<Event> getAllEvents(); 
-	boolean insertEvent(Event event);
-	boolean updateEventTime(int eventId,String newTime);
-	boolean updateEventName(int eventId,String newName);
-	boolean updateEventLocation(int eventId,String newLocation);
-	boolean updateEventRegistrationDeadline(int eventId,String newDeadline);
+	Event getEvent(int eventId) throws SQLException, ClassNotFoundException;
+	ArrayList<Event> getAllEvents() throws SQLException, ClassNotFoundException; 
+	boolean insertEvent(Event event) throws SQLException, ClassNotFoundException;
+	boolean updateEventTime(int eventId,String newTime) throws SQLException, ClassNotFoundException;
+	boolean updateEventName(int eventId,String newName) throws SQLException, ClassNotFoundException;
+	boolean updateEventLocation(int eventId,String newLocation) throws SQLException, ClassNotFoundException;
+	boolean updateEventRegistrationDeadline(int eventId,String newDeadline) throws SQLException, ClassNotFoundException;
 	
 }

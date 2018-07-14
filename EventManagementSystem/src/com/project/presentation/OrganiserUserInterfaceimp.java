@@ -1,4 +1,4 @@
-package com.project.presentation;
+/*package com.project.presentation;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,7 +51,12 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 		switch (choice) {
 		case 1: {
 			event = InputDetails.acceptEventDetails();
-			eventservice.insertEvent(event);
+			try {
+				eventservice.insertEvent(event);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("Do you want to add anything or exit"
 					+ "press 1 for updating details and 2. for showing  menu again" + "3. for exit");
 			option = sc.nextInt();
@@ -68,7 +73,13 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 
 		}
 		case 2: {
-			ArrayList<Event> eventList = eventservice.getAllEvents();
+			ArrayList<Event> eventList;
+			try {
+				eventList = eventservice.getAllEvents();
+			} catch (ClassNotFoundException | SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			for (Event emp : eventList) {
 				System.out.print("\nevent id" +emp.getEventID() + "event name" +emp.getEventName());
 			}
@@ -80,7 +91,12 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 			chooseeventdetails=sc.nextInt();
 			switch (chooseeventdetails) {
 			case 1: {
-				System.out.println("envent details are" +eventservice.getEvent(eventno));
+				try {
+					System.out.println("envent details are" +eventservice.getEvent(eventno));
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				break;
 			}
@@ -228,4 +244,4 @@ public class OrganiserUserInterfaceimp implements OrganiserUserInterface {
 		
 
 	
-}
+}*/

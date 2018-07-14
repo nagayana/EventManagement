@@ -9,7 +9,7 @@ import java.util.EventListener;
 
 import com.project.pojo.GuestList;
 
-public class GuestListImp implements GuestListDao {
+public class GuestListDaoImp implements GuestListDao {
 
 	@Override
 	public ArrayList<GuestList> getEventGuestList(int eventId) throws SQLException,ClassNotFoundException{
