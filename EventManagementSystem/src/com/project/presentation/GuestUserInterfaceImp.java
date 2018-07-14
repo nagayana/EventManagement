@@ -3,6 +3,7 @@ package com.project.presentation;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import com.project.pojo.Event;
 import com.project.service.GuestListServiceImp;
 import com.project.service.RegisterServiceImp;
@@ -12,16 +13,18 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 	@Override
 	public void showMenu(int designationId)
 	{		
-		System.out.println("------ Your Event List ------");
+		System.out.println("\n====== You are logged in as a User ======\n");
+		System.out.println("------ Your Event List ------\n");
 		ArrayList<Event> eventList = new ArrayList<>(); 
 		try{
 			eventList = new GuestListServiceImp().getGuestEventList(designationId);
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error occurred please try again");
+			System.out.println(e);
 		}
     	
+		System.out.println("Event ID      Event Name\n");
     	for(Event event : eventList)
     	{
     		printGuestEvent(event);
@@ -31,7 +34,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 	
 	private void printGuestEvent(Event event)
 	{
-		System.out.print(event.getEventID()+" : "+event.getEventName());
+		System.out.println(event.getEventID()+"        "+event.getEventName());
 	}
 	
 	public void actionPerformed(int employeeId)
