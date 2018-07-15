@@ -19,7 +19,6 @@ public class LogIn {
 		int employeeId = scanner.nextInt();
 		System.out.print("Enter Password : ");
 		String password = scanner.next();
-		scanner.close();
 		
 		Employee employee = null;
 		try{

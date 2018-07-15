@@ -1,7 +1,8 @@
 package com.project.presentation;
 
+import com.project.pojo.Employee;
+
 public interface GuestUserInterface {
-	void showMenu(int designationId);
-	void actionPerformed(int employeeId);
+	void showMenu(Employee employee);
 
 }

@@ -13,5 +13,7 @@ public interface EventDao {
 	boolean updateEventLocation(int eventId,String newLocation) throws SQLException,ClassNotFoundException;;
 	boolean updateEventRegistrationDeadline(int eventId,String newDeadline) throws SQLException,ClassNotFoundException;;
 	boolean updateEvent(int eventid, Event newEvent) throws SQLException,ClassNotFoundException;;
-	ArrayList<Event> getAllEvents() throws SQLException,ClassNotFoundException;; 
+	ArrayList<Event> getAllEvents() throws SQLException,ClassNotFoundException;
+	ArrayList<Event> getUnregisteredEventsByEmployeeId(int employeeId) throws SQLException, ClassNotFoundException;
+	ArrayList<Event> getRegisteredEventsByEmployeeId(int employeeId) throws SQLException, ClassNotFoundException;; 
 }
