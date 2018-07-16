@@ -61,7 +61,6 @@ public class EventDaoImp implements EventDao {
 		return registeredEvents;
 	}
 	
-
 	@Override
 	public boolean insertEvent(Event event) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
@@ -191,5 +190,39 @@ public class EventDaoImp implements EventDao {
 			events.add(event);
 		}
 		return events;
+	}
+
+	
+	@Override
+	public boolean incrementCurrentRegistration(int eventId) throws SQLException, ClassNotFoundException {
+		
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement("update events set registration_till_date = registration_till_date+1"
+				+ "where event_id = ?");
+		preparedStatement.setInt(1, eventId);
+		int result = preparedStatement.executeUpdate();
+		if(result>0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	
+	@Override
+	public boolean decrementCurrentRegistration(int eventId) throws SQLException, ClassNotFoundException {
+		
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement("update events set registration_till_date = registration_till_date-1"
+				+ "where event_id = ?");
+		preparedStatement.setInt(1, eventId);
+		int result = preparedStatement.executeUpdate();
+		if(result>0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
