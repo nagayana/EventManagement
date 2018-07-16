@@ -9,7 +9,7 @@ import java.util.EventListener;
 
 import com.project.pojo.GuestList;
 
-public class GuestListImp implements GuestListDao {
+public class GuestListDaoImp implements GuestListDao {
 
 	@Override
 	public ArrayList<GuestList> getEventGuestList(int eventId) throws SQLException,ClassNotFoundException{
@@ -32,7 +32,7 @@ public class GuestListImp implements GuestListDao {
 		pstmt.setInt(1, guest.getDesignationId());
 		pstmt.setInt(2, guest.getEventId());
 		int result = pstmt.executeUpdate();
-		if (result > 0){
+		if (result > 0){ 
 			return true;
 		}
 		else{
@@ -70,5 +70,24 @@ public class GuestListImp implements GuestListDao {
 		}
 		return eventIdList;
 	}
+
+	@Override
+	public boolean deleteGuestListByEventId(int eventId) throws ClassNotFoundException, SQLException {
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("delete from guestlist where event_id = ?");
+		pstmt.setInt(1, eventId);
+		int result = pstmt.executeUpdate();
+		if (result > 0){
+				return true;
+		}
+		else{
+				return false;
+		}
+	}
+
+	
+	
+		
+	
 
 }

@@ -11,4 +11,5 @@ public interface GuestListService {
 	boolean deleteGuestList(int designationId,int eventId) throws ClassNotFoundException, SQLException;
 	boolean insertGuestList(int designationId, int eventId) throws ClassNotFoundException, SQLException;
 	ArrayList<Event> getGuestEventList(int designationId) throws ClassNotFoundException,SQLException; 
+	boolean deleteGuestListByEventId(int eventId) throws ClassNotFoundException,SQLException;
 }

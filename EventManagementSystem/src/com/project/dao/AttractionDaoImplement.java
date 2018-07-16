@@ -48,7 +48,7 @@ public class AttractionDaoImplement implements AttractionDaoInterface {
 	    	return true;
 	    }
 	    else{
-	    	return false;
+	    	return false; 
 	    }
 	}
 
@@ -58,11 +58,11 @@ public class AttractionDaoImplement implements AttractionDaoInterface {
 	} 
 
 	@Override
-	public List<Attraction> getEventAttractions(int eventId) throws SQLException, ClassNotFoundException{
-		List<Attraction> attractionList=new ArrayList<>();
+	public ArrayList<Attraction> getEventAttractions(int eventId) throws SQLException, ClassNotFoundException{
+		ArrayList<Attraction> attractionList=new ArrayList<>();
 		
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement preparedStatement = connection.prepareStatement("select * from attration where event_id = ?");
+		PreparedStatement preparedStatement = connection.prepareStatement("select * from attraction where event_id = ?");
 		preparedStatement.setInt(1, eventId);
 		ResultSet rs = preparedStatement.executeQuery();
 		
@@ -88,6 +88,21 @@ public class AttractionDaoImplement implements AttractionDaoInterface {
 	    			rs.getInt(4), rs.getInt(5), rs.getInt(6));getClass();
 	    }
 	    return attraction;
+	}
+
+	@Override
+	public boolean deleteAttractionByEvenetId(int eventId) throws ClassNotFoundException, SQLException {
+		Connection con = DBConnection.getDBConnection();
+		PreparedStatement preparedStatement = con.prepareStatement("delete from attraction where event_id = ?");
+		preparedStatement.setInt(1, eventId);
+		
+		int result = preparedStatement.executeUpdate();
+	    if(result>0){
+	    	return true;
+	    }
+	    else{
+	    	return false;
+	    }
 	}
 
 }

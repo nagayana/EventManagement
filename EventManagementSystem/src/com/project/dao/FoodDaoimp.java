@@ -13,13 +13,13 @@ import java.util.List;
 public class FoodDaoimp implements FoodDao{
 
 	@Override
-	public List<Food> getFoodList(int eventId) throws ClassNotFoundException, SQLException {
+	public ArrayList<Food> getFoodList(int eventId) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement("select * from food where event_id=?");
 		preparedStatement.setInt(1, eventId);
 		ResultSet rs = preparedStatement.executeQuery();
 			
-		List<Food> foodList=new ArrayList<>();
+		ArrayList<Food> foodList=new ArrayList<>();
 		while(rs.next()){    
 			Food food= new Food(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5));
 			    foodList.add(food);
@@ -69,6 +69,20 @@ public class FoodDaoimp implements FoodDao{
 		pStatement.setInt(1, quantity);
 		pStatement.setString(2, foodName);
 		pStatement.setInt(3, eventId);
+		int result = pStatement.executeUpdate();
+		if (result> 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deleteFoodByEventId(int eventId) throws SQLException, ClassNotFoundException {
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pStatement = connection.prepareStatement("delete from food where event_id = ?");
+		pStatement.setInt(1, eventId);
 		int result = pStatement.executeUpdate();
 		if (result> 0){
 			return true;

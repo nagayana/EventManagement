@@ -9,4 +9,5 @@ public interface GuestListDao {
 	boolean insertGuest(GuestList guestListElement) throws SQLException,ClassNotFoundException;
 	boolean deleteGuest(int designationId,int eventId) throws SQLException,ClassNotFoundException;
 	ArrayList<Integer> getEventIdByDesignationId(int designationId) throws SQLException,ClassNotFoundException;
+	boolean deleteGuestListByEventId(int eventId) throws ClassNotFoundException,SQLException;
 }

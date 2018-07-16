@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.project.dao.FoodDao;
@@ -26,9 +27,9 @@ public class FoodServiceImp implements FoodService {
 
 
 	@Override
-	public List<Food> searchFoodList(int eventId) throws ClassNotFoundException, SQLException {
+	public ArrayList<Food> searchFoodList(int eventId) throws ClassNotFoundException, SQLException {
 		FoodDaoimp foodObj=new FoodDaoimp();
-		List<Food> foodList=foodObj.getFoodList(eventId);
+		ArrayList<Food> foodList=foodObj.getFoodList(eventId);
 		return foodList;
 	}
 
@@ -47,5 +48,16 @@ public class FoodServiceImp implements FoodService {
 		FoodDaoimp foodObj=new FoodDaoimp();
 		return foodObj.updateFood(foodName,eventId,quantity);
 	}
+
+
+
+	@Override
+	public boolean deleteFoodByEventId(int eventId) throws ClassNotFoundException, SQLException {
+		FoodDaoimp foodObj=new FoodDaoimp();
+		return foodObj.deleteFoodByEventId(eventId);
+	}
+
+		
+	
 
 }
