@@ -22,10 +22,12 @@ public class FoodDatabaseServiceImp implements FoodDatabseService{
 		
 	}
 
+
 	@Override
 	public FoodDatabase getFoodById(int foodId) throws ClassNotFoundException, SQLException {
 		FoodDatabaseDao foodDB = new FoodDatabaseImp();
 		return foodDB.getFoodById(foodId);
 	}
+
 	
 }

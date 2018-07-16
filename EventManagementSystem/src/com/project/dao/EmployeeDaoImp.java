@@ -11,7 +11,7 @@ public class EmployeeDaoImp implements EmployeeDao{
 	public Integer getNumberOfEmployeesByDesignation(int designation_id) throws SQLException, ClassNotFoundException
 	{
 		Connection con = DBConnection.getDBConnection();
-		PreparedStatement pst = con.prepareStatement("select count(*) from employeedatabase where designation_id = ?");
+		PreparedStatement pst = con.prepareStatement("select count(*) from employeesdatabase where designation_id = ?");
 		pst.setInt(1, designation_id);
 		
 		ResultSet rs = pst.executeQuery();
@@ -28,7 +28,7 @@ public class EmployeeDaoImp implements EmployeeDao{
 	public Employee getEmployeeById(int employee_id) throws SQLException,ClassNotFoundException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("select * from employeedatabase where employee_id = ?");
+		PreparedStatement pStatement = connection.prepareStatement("select * from employeesdatabase where employee_id = ?");
 		pStatement.setInt(1, employee_id);
 		ResultSet rs = pStatement.executeQuery();
 		

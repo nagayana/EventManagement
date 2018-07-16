@@ -50,6 +50,7 @@ public class InputDetails {
 		return foodList;
 	}
 
+
 	public Attraction acceptAttractionListDetails(int eventId) {
 		Scanner sc = new Scanner(System.in);
 		Attraction attraction=new Attraction();
@@ -64,6 +65,7 @@ public class InputDetails {
 		attraction.setDuration(sc.nextInt());
 		System.out.println("Enter attraction price :");
 		attraction.setPrice(sc.nextInt());
+		
 		return attraction;
 	}
 

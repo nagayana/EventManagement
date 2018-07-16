@@ -15,4 +15,7 @@ public interface EventService {
 	boolean updateEventRegistrationDeadline(int eventId,String newDeadline) throws SQLException, ClassNotFoundException;
 	boolean deleteEvent(int eventId) throws SQLException, ClassNotFoundException;
 	boolean updateEvent(int eventid, Event newEvent) throws SQLException,ClassNotFoundException;;
+	ArrayList<Event> getRegisteredEventsByEmployeeId(int employeeId) throws SQLException, ClassNotFoundException;
+	ArrayList<Event> getUnregisteredEventsByEmployeeId(int employeeId) throws SQLException, ClassNotFoundException;
+	
 }

@@ -32,6 +32,7 @@ public class GuestListDaoImp implements GuestListDao {
 		pstmt.setInt(1, guest.getDesignationId());
 		pstmt.setInt(2, guest.getEventId());
 		int result = pstmt.executeUpdate();
+		
 		if (result > 0){ 
 			return true;
 		}
@@ -40,20 +41,7 @@ public class GuestListDaoImp implements GuestListDao {
 		}
 	}
 
-	@Override
-	public boolean deleteGuest(int designationId, int eventId) throws SQLException,ClassNotFoundException{
-		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("delete from guestlist where event_id = ? and designation_id = ?");
-		pstmt.setInt(1, eventId);
-		pstmt.setInt(2, designationId);
-		int result = pstmt.executeUpdate();
-		if (result > 0){
-				return true;
-		}
-		else{
-				return false;
-		}
-	}
+	
 	
 	@Override
 	public ArrayList<Integer> getEventIdByDesignationId(int designationId) throws SQLException,ClassNotFoundException
@@ -86,8 +74,23 @@ public class GuestListDaoImp implements GuestListDao {
 	}
 
 	
+
+	@Override
+	public boolean deleteGuest(int designationId, int eventId) throws SQLException,ClassNotFoundException{
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("delete from guestlist where event_id = ? and designation_id = ?");
+		pstmt.setInt(1, eventId);
+		pstmt.setInt(2, designationId);
+		int result = pstmt.executeUpdate();
+		if (result > 0){
+				return true;
+		}
+		else{
+				return false;
+		}
+	}
 	
-		
 	
+
 
 }

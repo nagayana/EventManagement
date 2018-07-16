@@ -14,12 +14,11 @@ public class LogIn {
 		Scanner scanner = new Scanner(System.in);
 		AuthenticationService authenticationService = new AuthenticationService();
 		
-		System.out.print("====== Welcome to Event Management System =======");
+		System.out.println("====== Welcome to Event Management System =======\n");
 		System.out.print("Enter Employee ID : ");
 		int employeeId = scanner.nextInt();
 		System.out.print("Enter Password : ");
 		String password = scanner.next();
-		scanner.close();
 		
 		Employee employee = null;
 		try{
@@ -28,7 +27,8 @@ public class LogIn {
 		}
 		catch(SQLException|ClassNotFoundException e)
 		{
-			System.out.println("Error occured please try again");
+			System.out.println(e);
+			//System.out.println("Error occured please try again");
 		}
 		return employee;
 	}

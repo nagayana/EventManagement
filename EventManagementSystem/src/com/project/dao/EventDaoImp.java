@@ -14,7 +14,7 @@ public class EventDaoImp implements EventDao {
 	@Override
 	public Event getEvent(int eventId) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("select * from Events where Event_Id =(?)");
+		PreparedStatement pstmt = connection.prepareStatement("select * from events where id = ?");
 		pstmt.setInt(1, eventId);
 		ResultSet rs = pstmt.executeQuery();
 		Event event = null;
@@ -24,6 +24,43 @@ public class EventDaoImp implements EventDao {
 		}
 		return event;
 	}
+	
+	@Override
+	public ArrayList<Event> getUnregisteredEventsByEmployeeId(int employeeId) throws SQLException,ClassNotFoundException
+	{
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("select * from events where id not in "
+				+ "(select event_id from registrations where employee_id = ?)");
+		pstmt.setInt(1, employeeId);
+		ResultSet rs = pstmt.executeQuery();
+		ArrayList<Event> unRegisteredEvents = new ArrayList<>();
+		while(rs.next())
+		{
+			Event event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), 
+					rs.getString(5), rs.getInt(6), rs.getInt(7));
+			unRegisteredEvents.add(event);
+		}
+		return unRegisteredEvents;
+	}
+	
+	@Override
+	public ArrayList<Event> getRegisteredEventsByEmployeeId(int employeeId) throws SQLException,ClassNotFoundException
+	{
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("select * from events where id in "
+				+ "(select event_id from registrations where employee_id = ?)");
+		pstmt.setInt(1, employeeId);
+		ResultSet rs = pstmt.executeQuery();
+		ArrayList<Event> registeredEvents = new ArrayList<>();
+		while(rs.next())
+		{
+			Event event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), 
+					rs.getString(5), rs.getInt(6), rs.getInt(7));
+			registeredEvents.add(event);
+		}
+		return registeredEvents;
+	}
+	
 
 	@Override
 	public boolean insertEvent(Event event) throws ClassNotFoundException, SQLException {

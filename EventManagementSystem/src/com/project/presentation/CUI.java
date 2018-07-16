@@ -20,7 +20,7 @@ public class CUI {
 	{
 		if(employee.getType().equalsIgnoreCase("user"))
 		{
-			new GuestUserInterfaceImp().showMenu(employee.getDesignationId());
+			new GuestUserInterfaceImp().showMenu(employee);
 		}
 	}
 
