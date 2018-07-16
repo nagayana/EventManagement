@@ -21,7 +21,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 			System.out.println("\n====== You are logged in as a User ======");
 			System.out.print("1: Register for event");
 			System.out.print("\n2: Cancel registration");
-			System.out.print("\n3. Exit");
+			System.out.print("\n3: Exit");
 			System.out.print("\n\nEnter your choice : ");
 			
 			
@@ -35,6 +35,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 					showCancelationMenu(employee);
 				}
 				else {
+					System.out.println("\n======= Good Bye. Thank you for using event management system =======");
 					System.exit(0);
 				}
 			}
@@ -91,8 +92,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
  	private void printEvents(ArrayList<Event> events){
 		System.out.println("ID              Name               Location                 Time");
 		for(Event event:events){
-			System.out.println(event.getEventID()+"          "+event.getEventName()+"             "+event.getEventLocation()+
-					"           "+event.getEventTime());
+			System.out.printf("%-12d %-21s %-20s %-10s\n",event.getEventID(),event.getEventName(),event.getEventLocation(),event.getEventTime());
 		}
 		
 	}

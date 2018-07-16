@@ -14,7 +14,7 @@ public class EventDaoImp implements EventDao {
 	@Override
 	public Event getEvent(int eventId) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("select * from events where id = ?");
+		PreparedStatement pstmt = connection.prepareStatement("select * from events where event_id = ?");
 		pstmt.setInt(1, eventId);
 		ResultSet rs = pstmt.executeQuery();
 		Event event = null;
@@ -29,7 +29,7 @@ public class EventDaoImp implements EventDao {
 	public ArrayList<Event> getUnregisteredEventsByEmployeeId(int employeeId) throws SQLException,ClassNotFoundException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("select * from events where id not in "
+		PreparedStatement pstmt = connection.prepareStatement("select * from events where event_id not in "
 				+ "(select event_id from registrations where employee_id = ?)");
 		pstmt.setInt(1, employeeId);
 		ResultSet rs = pstmt.executeQuery();
@@ -47,7 +47,7 @@ public class EventDaoImp implements EventDao {
 	public ArrayList<Event> getRegisteredEventsByEmployeeId(int employeeId) throws SQLException,ClassNotFoundException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("select * from events where id in "
+		PreparedStatement pstmt = connection.prepareStatement("select * from events where event_id in "
 				+ "(select event_id from registrations where employee_id = ?)");
 		pstmt.setInt(1, employeeId);
 		ResultSet rs = pstmt.executeQuery();
@@ -65,7 +65,7 @@ public class EventDaoImp implements EventDao {
 	@Override
 	public boolean insertEvent(Event event) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("insert into Events values(?,?,?,?,?,?,?)");
+		PreparedStatement pstmt = connection.prepareStatement("insert into events values(?,?,?,?,?,?,?)");
 		pstmt.setInt(1, event.getEventID());
 		pstmt.setString(2, event.getEventName());
 		pstmt.setString(3, event.getEventLocation());
@@ -87,7 +87,7 @@ public class EventDaoImp implements EventDao {
 	public boolean deleteEvent(int eventId) throws ClassNotFoundException, SQLException {
 
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("delete from Events where Event_Id =(?)");
+		PreparedStatement pstmt = connection.prepareStatement("delete from events where event_id =(?)");
 		pstmt.setInt(1, eventId);
 		int result = pstmt.executeUpdate();
 		if (result > 0){
@@ -121,7 +121,7 @@ public class EventDaoImp implements EventDao {
 	public boolean updateEventLocation(int eventId,String newLocation) throws SQLException, ClassNotFoundException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("update events set location = ? where event_id = ?");
+		PreparedStatement pStatement = connection.prepareStatement("update events set event_location = ? where event_id = ?");
 		pStatement.setString(1, newLocation);
 		pStatement.setInt(2, eventId);
 		int result = pStatement.executeUpdate();
@@ -139,7 +139,7 @@ public class EventDaoImp implements EventDao {
 	public boolean updateEventTime(int eventId,String newTime) throws ClassNotFoundException, SQLException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("update events set time = ? where event_id = ?");
+		PreparedStatement pStatement = connection.prepareStatement("update events set event_time = ? where event_id = ?");
 		pStatement.setString(1, newTime);
 		pStatement.setInt(2, eventId);
 		int result = pStatement.executeUpdate();
@@ -157,7 +157,7 @@ public class EventDaoImp implements EventDao {
 	public boolean updateEventRegistrationDeadline(int eventId,String newDeadLine) throws ClassNotFoundException, SQLException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("update events set registration_deadline = ? where event_id = ?");
+		PreparedStatement pStatement = connection.prepareStatement("update events set event_registration_deadline = ? where event_id = ?");
 		pStatement.setString(1, newDeadLine);
 		pStatement.setInt(2, eventId);
 		int result = pStatement.executeUpdate();
@@ -181,7 +181,7 @@ public class EventDaoImp implements EventDao {
 	public ArrayList<Event> getAllEvents() throws ClassNotFoundException, SQLException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pstmt = connection.prepareStatement("select * from Events");
+		PreparedStatement pstmt = connection.prepareStatement("select * from events");
 		ArrayList<Event> events = new ArrayList<>();
 		
 		ResultSet rs = pstmt.executeQuery();
