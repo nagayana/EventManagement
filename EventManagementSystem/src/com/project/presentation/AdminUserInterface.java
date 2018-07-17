@@ -31,7 +31,7 @@ public class AdminUserInterface implements OrganiserUserInterface {
 		System.out.println("=========You are logged in as organiser======="+"\n1.Create an "
 				+ "event\n"+"2.Delete an event\n"+"3. Show Event details\n"+"4. Update an event\n"+"Choose your choice");
 	    int choice1=sc.nextInt();
-		actionPerform(choice1); 
+		actionPerform(choice1);  
 		
 		
 	}

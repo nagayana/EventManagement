@@ -29,7 +29,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 			try {
 				if(choice==1) {
 					showRegistrationMenu(employee);
-				}
+				} 
 				else if(choice==2) {
 					showCancelationMenu(employee);
 				}

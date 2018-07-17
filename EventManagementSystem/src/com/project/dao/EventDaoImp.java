@@ -16,7 +16,7 @@ public class EventDaoImp implements EventDao {
 	public Event getEvent(int eventId) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
 		PreparedStatement pstmt = connection.prepareStatement("select * from events where event_id = ?");
-		pstmt.setInt(1, eventId);
+		pstmt.setInt(1, eventId); 
 		ResultSet rs = pstmt.executeQuery();
 		Event event = null;
 		if(rs.next()) {
@@ -76,7 +76,7 @@ public class EventDaoImp implements EventDao {
 		int result = pstmt.executeUpdate();
 		
 		if (result > 0){
-				return true;
+				return true; 
 		}
 		else{
 				return false;
