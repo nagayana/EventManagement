@@ -1,5 +1,9 @@
 package com.project.pojo;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Event {
     public Event(){
     	
@@ -9,16 +13,16 @@ public class Event {
 	private int eventID;
 	private String eventName;
 	private String eventLocation;
-	private String eventTime;
-	private String eventRegistrationDeadline;
+	private LocalDateTime eventTime;
+	private LocalDateTime eventRegistrationDeadline;
 	private int maxRegistration;
 	private int currentRegistration;
 	
 	
 	
 	
-	public Event(int eventID, String eventName, String eventLocation, String eventTime,
-			String eventRegistrationDeadline, int maxRegistration, int currentRegistration) {
+	public Event(int eventID, String eventName, String eventLocation, int maxRegistration, 
+			int currentRegistration,LocalDateTime eventTime,LocalDateTime eventRegistrationDeadline) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -47,17 +51,17 @@ public class Event {
 	public void setEventLocation(String eventLocation) {
 		this.eventLocation = eventLocation;
 	}
-	public String getEventTime() {
+	public LocalDateTime getEventTime() {
 		return eventTime;
 	}
-	public void setEventTime(String eventTime) {
-		this.eventTime = eventTime;
+	public void setEventTime(LocalDateTime localDateTime) {
+		this.eventTime = localDateTime;
 	}
-	public String getEventRegistrationDeadline() {
+	public LocalDateTime getEventRegistrationDeadline() {
 		return eventRegistrationDeadline;
 	}
-	public void setEventRegistrationDeadline(String eventRegistrationDeadline) {
-		this.eventRegistrationDeadline = eventRegistrationDeadline;
+	public void setEventRegistrationDeadline(LocalDateTime localDateTime) {
+		this.eventRegistrationDeadline = localDateTime;
 	}
 	public int getMaxRegistration() {
 		return maxRegistration;

@@ -1,31 +1,37 @@
 package com.project.helper;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 import com.project.pojo.Attraction;
 import com.project.pojo.Event;
 import com.project.pojo.Food;
+import com.project.pojo.FoodDatabase;
 import com.project.pojo.GuestList;
 import com.project.service.*;
 
 public class InputDetails {
 	
-	
-	public static Event acceptEventDetails(){
+	Timestamp t;
+	public Event acceptEventDetails(){
 		Scanner sc = new Scanner(System.in);
 		Event event=new Event();
-		System.out.println("Enter event ID");
+		System.out.println("Enter event ID (INTEGER):");
 		event.setEventID(sc.nextInt());
-		System.out.println("Enter event Name");
+		System.out.println("Enter event Name :");
 		event.setEventName(sc.next());
-		System.out.println("enter event location");
+		System.out.println("Enter event location :");
 		event.setEventLocation(sc.next());
-		System.out.println("enter event time");
-		event.setEventTime(sc.next());
-		event.setEventRegistrationDeadline(null);
-		event.setMaxRegistration(0);
-		event.setCurrentRegistration(0);
+		System.out.println("Enter event time :");
+		event.setEventTime(LocalDateTime.parse(sc.next()));
+		System.out.println("Enter event Registration deadline :");
+		event.setEventRegistrationDeadline(LocalDateTime.parse(sc.next()));
+		System.out.println("Enter event maximum registration value :");
+		event.setMaxRegistration(sc.nextInt());
+		event.setCurrentRegistration(0); 
 		return event;
 		
 		
@@ -33,49 +39,36 @@ public class InputDetails {
 		
 	}
 
-	public static Food acceptFoodListDetails() {
+	public Food acceptFoodListDetails(FoodDatabase foodData, int eventId) {
 		Scanner sc = new Scanner(System.in);
 	    Food foodList=new Food();
-	    System.out.println("enter the food ID ");
-	    foodList.setFoodId(sc.nextInt());
-	    System.out.println("enter the food name ");
-	    foodList.setFoodName(sc.next());
-	    String foodname=  foodList.getFoodName();
-	    FoodDatabseService foodprice=new FoodDatabaseServiceImp();
-	    try {
-			foodprice.getFoodListbyPrice(foodname);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    System.out.println("enter the quatity you want");
+	    foodList.setFoodId(foodData.getFoodId());
+	    foodList.setFoodName(foodData.getFoodName());
+	    foodList.setPrice((int)foodData.getPrice());
+	    foodList.setEventId(eventId);
+	    
+	    System.out.println("Enter the quatity you "
+	    		+ "want :");
 	    foodList.setQuantity(sc.nextInt());
-	    System.out.println("for which event you want to enter?");
-        int eventno=sc.nextInt();
-        foodList.setEventId(eventno);
 		return foodList;
 	}
 
-	public static Attraction acceptAttractionListDetails() {
+
+	public Attraction acceptAttractionListDetails(int eventId) {
 		Scanner sc = new Scanner(System.in);
 		Attraction attraction=new Attraction();
-		System.out.println("eneter event id for attraction");
-		attraction.setEventId(sc.nextInt());
-		System.out.println("enter attraction id");
+		attraction.setEventId(eventId);
+		System.out.println("Enter attraction id :");
 		attraction.setAttractionId(sc.nextInt());
-		System.out.println("enter attraction name");
+		System.out.println("Enter attraction name :");
 		attraction.setName(sc.next());
-		System.out.println("enter attraction co-ordinator");
+		System.out.println("Enter attraction co-ordinator");
 		attraction.setCoordinatorName(sc.next());
-		System.out.println("enter attraction duration");
+		System.out.println("Enter attraction duration in Hours :");
 		attraction.setDuration(sc.nextInt());
-		System.out.println("enter attraction price");
-		if(attraction.getName().equalsIgnoreCase("Food"))
-		{ // calculate the price of food abhimanyu!!!	
-		}
-		else {
-			attraction.setPrice(sc.nextInt());
-		}
+		System.out.println("Enter attraction price :");
+		attraction.setPrice(sc.nextInt());
+		
 		return attraction;
 	}
 

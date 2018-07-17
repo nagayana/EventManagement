@@ -22,6 +22,11 @@ public class CUI {
 		{
 			new GuestUserInterfaceImp().showMenu(employee);
 		}
+		
+		if(employee.getType().equalsIgnoreCase("admin"))
+		{
+			new AdminUserInterface().showMenu();
+		}
 	}
 
 }
