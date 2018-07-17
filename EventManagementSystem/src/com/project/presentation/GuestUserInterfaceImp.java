@@ -19,7 +19,6 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 		Scanner scanner = new Scanner(System.in);
 		while(true)
 		{
-			
 			System.out.println("\n====== You are logged in as a User ======");
 			System.out.print("1: Register for event");
 			System.out.print("\n2: Cancel registration");
@@ -55,7 +54,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 		else {
 			System.out.print("\n\n======= List of events you have registered for =======\n\n");
 			printEvents(registerdEvents);
-			System.out.print("\nEnter ID of event to cancel registration :");
+			System.out.print("\nEnter ID of event to cancel registration (choose one from ID column) :");
 			int eventId = scanner.nextInt();	
 			
 			HashSet<Integer> eventIds = getEventIds(registerdEvents); 
@@ -66,7 +65,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 					System.exit(0);
 				}
 				System.out.println("Please enter a valid event ID from above list. Try Again");
-				System.out.print("\nEnter ID of event to register  :");
+				System.out.print("\nEnter ID of event to register (choose one from ID column) :");
 				eventId = scanner.nextInt();
 				count++;
 			}
@@ -93,7 +92,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 		else {
 			System.out.print("\n\n======= List of events which are open for registration =======\n\n");
 			printEvents(unRegisterdEvents);
-			System.out.print("\nEnter ID of event to register  :");
+			System.out.print("\nEnter ID of event to register (choose one from ID column) :");
 			int eventId = scanner.nextInt();		
 			int count=0;
 			while(!isEventIdValid(unRegisterdEvents, eventId)){
@@ -102,7 +101,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 					System.exit(0);
 				}
 				System.out.println("Please enter a valid event ID from above list. Try again");
-				System.out.print("\nEnter ID of event to register  :");
+				System.out.print("\nEnter ID of event to register (choose one from ID column) :");
 				eventId = scanner.nextInt();
 				count++;
 			}
