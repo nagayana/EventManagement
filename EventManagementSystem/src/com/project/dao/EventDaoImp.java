@@ -69,8 +69,8 @@ public class EventDaoImp implements EventDao {
 		pstmt.setInt(1, event.getEventID());
 		pstmt.setString(2, event.getEventName());
 		pstmt.setString(3, event.getEventLocation());
-		pstmt.setTimestamp(4, getTime.formatevent.getEventTime());
-		pstmt.setTimestamp(5, event.getEventRegistrationDeadline());
+		pstmt.setString(4, event.getEventTime().toString());
+		pstmt.setString(5, event.getEventRegistrationDeadline().toString());
 		pstmt.setInt(6, event.getMaxRegistration());
 		pstmt.setInt(7, event.getCurrentRegistration());
 		int result = pstmt.executeUpdate();
