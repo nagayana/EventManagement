@@ -1,6 +1,7 @@
 package com.project.helper;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ import com.project.service.*;
 
 public class InputDetails {
 	
-	
+	Timestamp t;
 	public Event acceptEventDetails(){
 		Scanner sc = new Scanner(System.in);
 		Event event=new Event();
