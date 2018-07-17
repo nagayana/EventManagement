@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RegistrationDaoImp implements RegistrationDao{
+	
 	@Override
 	public boolean insertRegistration(int employeeId,int eventId) throws SQLException, ClassNotFoundException
 	{
