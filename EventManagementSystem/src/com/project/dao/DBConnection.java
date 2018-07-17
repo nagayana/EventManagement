@@ -18,6 +18,6 @@ public class DBConnection {
 		{
 			dbConnection = new DBConnection();
 		}
-		return connection;
+		return connection; 
 	}
 }

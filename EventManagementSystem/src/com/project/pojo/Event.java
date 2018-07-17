@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Event {
-    public Event(){
+    public Event(){ 
     	
     }
 
@@ -21,8 +21,8 @@ public class Event {
 	
 	
 	
-	public Event(int eventID, String eventName, String eventLocation, int maxRegistration, 
-			int currentRegistration,LocalDateTime eventTime,LocalDateTime eventRegistrationDeadline) {
+	public Event(int eventID, String eventName, String eventLocation,LocalDateTime eventTime,LocalDateTime eventRegistrationDeadline,int maxRegistration, 
+			int currentRegistration) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;

@@ -33,7 +33,7 @@ public class AdminUserInterface implements OrganiserUserInterface {
 	    int choice1=sc.nextInt();
 		actionPerform(choice1);  
 		
-		
+		 
 	}
 
 	@Override

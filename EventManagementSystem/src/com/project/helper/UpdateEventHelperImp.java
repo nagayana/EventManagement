@@ -26,7 +26,7 @@ public class UpdateEventHelperImp implements UpdateEventHelper {
 		 try {
 			   guest=gs.generateGuestList(eventId);
 	    } catch (ClassNotFoundException | SQLException e) {
-		       e.printStackTrace();
+		       e.printStackTrace(); 
 	    }
 		 System.out.println("\n\nHere are the Guest list for event ID :"+eventId);
 		    for(GuestList gl:guest)

@@ -29,7 +29,7 @@ public class InputDetails {
 		event.setEventTime(LocalDateTime.parse(sc.next()));
 		System.out.println("Enter event Registration deadline :");
 		event.setEventRegistrationDeadline(LocalDateTime.parse(sc.next()));
-		System.out.println("Enter event maximum registration value :");
+		System.out.println("Enter event maximum registration value :"); 
 		event.setMaxRegistration(sc.nextInt());
 		event.setCurrentRegistration(0); 
 		return event;

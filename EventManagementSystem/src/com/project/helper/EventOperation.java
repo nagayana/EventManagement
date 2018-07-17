@@ -34,11 +34,11 @@ public class EventOperation {
 		try {
 			   
 			   eventService.insertEvent(event);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) { 
 			e.printStackTrace();
 		}
 		
-		return event.getEventID();
+		return event.getEventID(); 
 		
 	}
 	
@@ -101,6 +101,7 @@ public class EventOperation {
 			System.out.println("\n\nEnter the food Id :");
 			int foodId=sc.nextInt();
 			FoodDatabase food = foodDatabaseService.getFoodById(foodId);
+			//ArrayList<int> checkFood=foodServiceImp
 			Food foodItem=input.acceptFoodListDetails(food,eventId);
 			foodService.insertFood(foodItem);
 			System.out.println("Do you want to add more food\n If yes input 1\n"

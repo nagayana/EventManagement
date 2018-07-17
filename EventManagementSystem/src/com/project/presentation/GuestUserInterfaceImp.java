@@ -27,17 +27,17 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 			int choice = scanner.nextInt();
 			try {
 				if(choice==1) {
-					showRegistrationMenu(employee);
+					showRegistrationMenu(employee); 
 				} 
 				else if(choice==2) {
-					showCancelationMenu(employee);
+					showCancelationMenu(employee);  
 				}
 				else {
 					System.out.println("\n======= Good Bye. Thank you for using event management system =======");
 					System.exit(0);
 				}
 			}
-			catch(Exception e) {
+			catch(Exception e) { 
 				System.out.println("Error occurred. Action not performed");
 				System.out.println(e+"Exception catched in GuestUserInterfaceImp.showmenu");
 			}

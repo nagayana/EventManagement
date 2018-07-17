@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -20,8 +21,8 @@ public class EventDaoImp implements EventDao {
 		ResultSet rs = pstmt.executeQuery();
 		Event event = null;
 		if(rs.next()) {
-				event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-						rs.getInt(5),LocalDateTime.parse(rs.getString(6)),LocalDateTime.parse(rs.getString(7)));
+				event =new Event(rs.getInt(1), rs.getString(2), rs.getString(3),
+						LocalDateTime.parse(rs.getString(4)),LocalDateTime.parse(rs.getString(5)), rs.getInt(6),rs.getInt(7));
 		}
 		return event;
 	}
@@ -37,9 +38,9 @@ public class EventDaoImp implements EventDao {
 		ArrayList<Event> unRegisteredEvents = new ArrayList<>();
 		while(rs.next())
 		{
-			Event event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-					rs.getInt(5),LocalDateTime.parse(rs.getString(6)),LocalDateTime.parse(rs.getString(7)));
-			unRegisteredEvents.add(event);
+			Event event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3),LocalDateTime.parse(rs.getString(4))
+					,LocalDateTime.parse(rs.getString(5)), rs.getInt(6),rs.getInt(7));
+			unRegisteredEvents.add(event); 
 		}
 		return unRegisteredEvents;
 	}
@@ -55,9 +56,8 @@ public class EventDaoImp implements EventDao {
 		ArrayList<Event> registeredEvents = new ArrayList<>();
 		while(rs.next())
 		{
-			Event event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-					rs.getInt(5),LocalDateTime.parse(rs.getString(6)),LocalDateTime.parse(rs.getString(7)));
-			registeredEvents.add(event);
+			Event event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3),LocalDateTime.parse(rs.getString(4)),LocalDateTime.parse(rs.getString(5)),rs.getInt(6),rs.getInt(7));
+			registeredEvents.add(event); 
 		}
 		return registeredEvents;
 	}
@@ -70,7 +70,7 @@ public class EventDaoImp implements EventDao {
 		pstmt.setString(2, event.getEventName());
 		pstmt.setString(3, event.getEventLocation());
 		pstmt.setString(4, event.getEventTime().toString());
-		pstmt.setString(5, event.getEventRegistrationDeadline().toString());
+		pstmt.setString(5, Timestamp.valueOf(event.getEventTime()).toString());
 		pstmt.setInt(6, event.getMaxRegistration());
 		pstmt.setInt(7, event.getCurrentRegistration());
 		int result = pstmt.executeUpdate();
@@ -186,8 +186,8 @@ public class EventDaoImp implements EventDao {
 		
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()){
-			Event event = new Event(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-					rs.getInt(5),LocalDateTime.parse(rs.getString(6)),LocalDateTime.parse(rs.getString(7)));
+			Event event =new Event(rs.getInt(1), rs.getString(2), rs.getString(3),LocalDateTime.parse(rs.getString(4)),
+					LocalDateTime.parse(rs.getString(5)), rs.getInt(6),rs.getInt(7));
 			events.add(event);
 		}
 		return events;
