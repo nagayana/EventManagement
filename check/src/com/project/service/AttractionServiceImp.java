@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.project.dao.AttractionDaoImplement;
@@ -21,7 +22,7 @@ public class AttractionServiceImp implements AttractionService {
 	}
 
 	@Override
-	public List<Attraction> getAttractionList(int eventId) throws ClassNotFoundException, SQLException {
+	public ArrayList<Attraction> getAttractionList(int eventId) throws ClassNotFoundException, SQLException {
 		AttractionDaoImplement attractionObj=new AttractionDaoImplement();
 		return attractionObj.getEventAttractions(eventId);
 	}
@@ -36,6 +37,12 @@ public class AttractionServiceImp implements AttractionService {
 	public Attraction getAttractionById(int attractionId) throws ClassNotFoundException, SQLException {
 		AttractionDaoImplement attractionObj=new AttractionDaoImplement();
 		return attractionObj.getAttractionById(attractionId);
+	}
+
+	@Override
+	public boolean deleteAttractionByEvenetId(int eventId) throws ClassNotFoundException, SQLException {
+		AttractionDaoImplement attractionObj=new AttractionDaoImplement();
+		return attractionObj.deleteAttraction(eventId);
 	}
 
 	

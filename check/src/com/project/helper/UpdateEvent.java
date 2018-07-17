@@ -1,7 +1,6 @@
 package com.project.helper;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import com.project.pojo.Event;
@@ -79,13 +78,13 @@ public class UpdateEvent {
 		if(sc.nextInt()==1)
 		{
 			System.out.println("Enter New Time :");
-			event.setEventTime(LocalDateTime.parse(sc.next()));
+			event.setEventTime(sc.next());
 		}
 		System.out.println("Want to update Event registration DeadLine\n type 1 for 'yes' and input any other integer for 'no'");
 		if(sc.nextInt()==1)
 		{ 
 			System.out.println("Enter New registration deadline :");
-			event.setEventRegistrationDeadline(LocalDateTime.parse(sc.next()));
+			event.setEventRegistrationDeadline(sc.next());
 		}
 		System.out.println("Want to update Event  maximum registartion number\n type 1 for 'yes' and input any other integer for 'no'");
 		if(sc.nextInt()==1)
@@ -93,7 +92,7 @@ public class UpdateEvent {
 			System.out.println("Enter New Number Of Maximum Registration :");
 			event.setMaxRegistration(sc.nextInt());
 		}
-		eventObj.updateEvent(eventId, event);
+		eventObj.updateEvent(eventId, event); 
 		
 		System.out.println("Want to update Guest List for the event\n type 1 for 'yes' and input any other integer for 'no'");
 		if(sc.nextInt()==1)

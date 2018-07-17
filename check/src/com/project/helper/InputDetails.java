@@ -1,8 +1,6 @@
 package com.project.helper;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Scanner;
 
 import com.project.pojo.Attraction;
@@ -18,16 +16,16 @@ public class InputDetails {
 	public Event acceptEventDetails(){
 		Scanner sc = new Scanner(System.in);
 		Event event=new Event();
-		System.out.println("Enter event ID (INTEGER):");
+		System.out.println("Enter event ID :");
 		event.setEventID(sc.nextInt());
 		System.out.println("Enter event Name :");
 		event.setEventName(sc.next());
 		System.out.println("Enter event location :");
 		event.setEventLocation(sc.next());
 		System.out.println("Enter event time :");
-		event.setEventTime(LocalDateTime.parse(sc.next()));
+		event.setEventTime(sc.next());
 		System.out.println("Enter event Registration deadline :");
-		event.setEventRegistrationDeadline(LocalDateTime.parse(sc.next()));
+		event.setEventRegistrationDeadline(sc.next());
 		System.out.println("Enter event maximum registration value :");
 		event.setMaxRegistration(sc.nextInt());
 		event.setCurrentRegistration(0); 

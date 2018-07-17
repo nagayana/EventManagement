@@ -10,7 +10,7 @@ public class DBConnection {
 	
 	private DBConnection() throws ClassNotFoundException, SQLException{
 		Class.forName("org.postgresql.Driver");
-		connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres","postgres","admin");
+		connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eventmanagement","postgres","admin");
 	}
 
 	public static Connection getDBConnection() throws ClassNotFoundException, SQLException{
