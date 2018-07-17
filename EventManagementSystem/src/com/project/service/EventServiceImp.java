@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import com.project.dao.EventDaoImp;
 import com.project.pojo.Event;
@@ -66,6 +67,21 @@ public class EventServiceImp implements EventService{
 	
 	@Override
 	public ArrayList<Event> getUnregisteredEventsByEmployeeId(int employeeId) throws SQLException,ClassNotFoundException{
-		return DbObject.getUnregisteredEventsByEmployeeId(employeeId);
+		
+		ArrayList<Event> allUnregisteredEvents = DbObject.getUnregisteredEventsByEmployeeId(employeeId);
+		return filterEventsByRegistrationDeadline(allUnregisteredEvents);
+	}
+	
+	
+	
+	private ArrayList<Event> filterEventsByRegistrationDeadline(ArrayList<Event> allEvents){
+		
+		ArrayList<Event> filteredEvents = new ArrayList<>();
+		for(Event event: allEvents) {
+			if(event.getEventRegistrationDeadline().isAfter(LocalDateTime.now())){
+				filteredEvents.add(event);
+			}
+		}
+		return filteredEvents;
 	}
 }
