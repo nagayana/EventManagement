@@ -62,7 +62,8 @@ public class EventServiceImp implements EventService{
 
 
 	public ArrayList<Event> getRegisteredEventsByEmployeeId(int employeeId) throws SQLException,ClassNotFoundException{
-		return DbObject.getRegisteredEventsByEmployeeId(employeeId);
+		ArrayList<Event> allRegisteredEvents = DbObject.getRegisteredEventsByEmployeeId(employeeId);
+		return filterEventsByRegistrationDeadline(allRegisteredEvents);
 	}
 	
 	@Override
