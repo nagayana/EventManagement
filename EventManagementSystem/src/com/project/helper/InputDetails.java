@@ -26,9 +26,21 @@ public class InputDetails {
 		System.out.println("Enter event location :");
 		event.setEventLocation(sc.next());
 		System.out.println("Enter event time :");
+		LocalDateTime eventTime = LocalDateTime.parse(sc.next());
+	
 		event.setEventTime(LocalDateTime.parse(sc.next()));
 		System.out.println("Enter event Registration deadline :");
-		event.setEventRegistrationDeadline(LocalDateTime.parse(sc.next()));
+		
+		LocalDateTime eventDeadline = LocalDateTime.parse(sc.next());
+		
+		while(eventDeadline.isAfter(eventTime)){
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Deadline date must be before event date. Please try again");
+			System.out.print("Enter event Registration deadline :");
+			eventDeadline = LocalDateTime.parse(scanner.next());
+		}
+		
+		event.setEventRegistrationDeadline(eventDeadline);
 		System.out.println("Enter event maximum registration value :"); 
 		event.setMaxRegistration(sc.nextInt());
 		event.setCurrentRegistration(0); 
