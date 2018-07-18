@@ -28,7 +28,7 @@ public class InputDetails {
 		System.out.println("Enter event time :");
 		LocalDateTime eventTime = LocalDateTime.parse(sc.next());
 	
-		event.setEventTime(LocalDateTime.parse(sc.next()));
+		event.setEventTime(eventTime);
 		System.out.println("Enter event Registration deadline :");
 		
 		LocalDateTime eventDeadline = LocalDateTime.parse(sc.next());
