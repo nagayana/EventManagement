@@ -38,7 +38,7 @@ public class EventOperation {
 			e.printStackTrace();
 		}
 		
-		return event.getEventID(); 
+		return event.getEventID();  
 		
 	}
 	
@@ -47,11 +47,14 @@ public class EventOperation {
 	//=============================================================================
 	public boolean deleteEvent(int eventId) throws ClassNotFoundException, SQLException
 	{
-		if(foodService.deleteFoodByEventId(eventId) && guestService.deleteGuestListByEventId(eventId)
-				&& attractionService.deleteAttractionByEvenetId(eventId) && eventService.deleteEvent(eventId))
-			return true;
+		foodService.deleteFoodByEventId(eventId);
+		guestService.deleteGuestListByEventId(eventId);
+		attractionService.deleteAttractionByEvenetId(eventId);
+		if(eventService.deleteEvent(eventId))
+			return true; 
 		else
-		    return false;
+			return false;
+		
 			
 	}
 	
@@ -60,7 +63,8 @@ public class EventOperation {
 	public void insertGuest(int eventId) throws ClassNotFoundException, SQLException
 	{
 		int want=1;
-		System.out.println("Here is the list of designation from where you can pick your guest");
+		System.out.println("-----------------------------------------------------------------------------\n"
+				+ "Here is the list of Designation from where you can pick your guest");
 		ArrayList<Designation> designationList = designationService.getAllDesignations();
 		for(Designation desig:designationList)
 		{
@@ -68,13 +72,13 @@ public class EventOperation {
 					"     Designation Name = "+desig.getDesignationName());
 		}
 		
-		System.out.println("\n\n");
+		System.out.println("\n");
 		while(want==1) {
 			System.out.println("Enter Designation Id : ");
 			int designationId=sc.nextInt();
 			guestService.insertGuestList(designationId, eventId);
-			System.out.println("Do you want to add more type of Guest\n If yes input 1\n "
-					+ "If no press any other integer \n Enter your Choice :");
+			System.out.println("Do you want to add more type of Guest\nIf yes input 1\n "
+					+ "If no press any other integer \nEnter your Choice :");
 			want = sc.nextInt();
 		}
 		
@@ -87,25 +91,35 @@ public class EventOperation {
 	
 	public void insertFood(int eventId) throws ClassNotFoundException, SQLException
 	{
-		System.out.println("Here is the list of all food from where you can pick your food item");
+		System.out.println("-------------------------------------------------------------------------------------\n"
+				+ "Here is the list of all food from where you can pick your food item");
 		ArrayList<FoodDatabase> foodList = foodDatabaseService.generateFoodList();
 		int want=1;
 		
-		for(FoodDatabase food:foodList)
+		for(FoodDatabase food:foodList) 
 		{
 			System.out.println("Food ID = "+food.getFoodId()+
-					" Food Name = "+food.getFoodName()+" FoodPrice = "+food.getPrice());
+					"    Food Name = "+food.getFoodName()+"     FoodPrice ="+food.getPrice());
 		}
 		while(want==1)
 	    {
 			System.out.println("\n\nEnter the food Id :");
 			int foodId=sc.nextInt();
-			FoodDatabase food = foodDatabaseService.getFoodById(foodId);
-			//ArrayList<int> checkFood=foodServiceImp
-			Food foodItem=input.acceptFoodListDetails(food,eventId);
-			foodService.insertFood(foodItem);
-			System.out.println("Do you want to add more food\n If yes input 1\n"
-					+ " If no press any other integer\n Enter your Choice :");
+			Food foodobj=foodService.isFoodExist(foodId, eventId);
+			if(foodobj != null)
+			{
+				System.out.println("This food is already in the list \nEnter the additional amount :");
+				foodService.updatefood(foodId, eventId, foodobj.getQuantity()+sc.nextInt());
+			}
+			else
+			{
+				FoodDatabase food = foodDatabaseService.getFoodById(foodId);
+				Food foodItem=input.acceptFoodListDetails(food,eventId);
+				foodService.insertFood(foodItem);
+			}
+			
+			System.out.println("Do you want to add more food\nIf yes input 1\n"
+					+ "If no press any other integer\nEnter your Choice :");
 			want = sc.nextInt();
 			
 		}
@@ -118,11 +132,12 @@ public class EventOperation {
 	{
 		int want=1;
 		while(want==1)
-		{
+		{ 
+			System.out.println("------------------------------------------------------------------------------------------------");
 			Attraction attraction=input.acceptAttractionListDetails(eventId);
 			attractionService.insertAttraction(attraction);
-			System.out.println("Do you want to add more attraction\n If yes input 1\n"
-					+ " If no press any other integer \n Enter your Choice :");
+			System.out.println("Do you want to add more attraction\nIf yes input 1\n"
+					+ "If no press any other integer \nEnter your Choice :");
 			want = sc.nextInt();
 		}
 		

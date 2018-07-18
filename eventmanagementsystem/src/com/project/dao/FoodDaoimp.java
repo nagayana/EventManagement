@@ -33,7 +33,7 @@ public class FoodDaoimp implements FoodDao{
 		PreparedStatement pstmt = connection.prepareStatement("insert into food values(?,?,?,?,?)");
 		
 		pstmt.setInt(1,food.getFoodId());
-		pstmt.setString(2,food.getFoodName());
+		pstmt.setString(2,food.getFoodName()); 
 		pstmt.setInt(3,food.getPrice());
 		pstmt.setInt(4,food.getQuantity());
 		pstmt.setInt(5,food.getEventId() );
@@ -47,10 +47,10 @@ public class FoodDaoimp implements FoodDao{
 	}
 			
 	@Override
-	public boolean deleteFood(String foodName,int eventId) throws ClassNotFoundException, SQLException {
+	public boolean deleteFood(int foodId,int eventId) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("delete from food where food_name = ? and event_id = ?");
-		pStatement.setString(1,foodName);
+		PreparedStatement pStatement = connection.prepareStatement("delete from food where food_id = ? and event_id = ?");
+		pStatement.setInt(1,foodId);
 		pStatement.setInt(2, eventId);
 		int result = pStatement.executeUpdate();
 		if (result> 0){
@@ -62,12 +62,12 @@ public class FoodDaoimp implements FoodDao{
 	}
 
 	@Override
-	public boolean updateFood(String foodName, int eventId,int quantity) throws ClassNotFoundException, SQLException {
+	public boolean updateFood(int foodId, int eventId,int quantity) throws ClassNotFoundException, SQLException {
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("update food set quantity = ? where food_name = ? "
+		PreparedStatement pStatement = connection.prepareStatement("update food set quantity = ? where food_id = ? "
 				+ "and event_id = ?");
 		pStatement.setInt(1, quantity);
-		pStatement.setString(2, foodName);
+		pStatement.setInt(2, foodId);
 		pStatement.setInt(3, eventId);
 		int result = pStatement.executeUpdate();
 		if (result> 0){
@@ -90,6 +90,23 @@ public class FoodDaoimp implements FoodDao{
 		else{
 			return false;
 		}
+	}
+
+	@Override
+	public Food isFoodExist(int foodId, int eventId) throws ClassNotFoundException, SQLException {
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pStatement = connection.prepareStatement("select * from food where event_id = ? and food_id=?");
+		pStatement.setInt(1, eventId);
+		pStatement.setInt(2, foodId);
+		
+		ResultSet rs = pStatement.executeQuery();
+		Food food=new Food();
+		food=null;
+		while(rs.next()){    
+			food= new Food(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5));
+		
+		    }
+		    return food;
 	}
 }
 

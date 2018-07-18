@@ -19,8 +19,8 @@ public class EventServiceImp implements EventService{
 	}
 
 	@Override
-	public boolean updateEventTime(int eventId, String newTime) throws SQLException,ClassNotFoundException{
-		return DbObject.updateEventTime(eventId, newTime);
+	public boolean updateEventTime(int eventId, LocalDateTime localDateTime) throws SQLException,ClassNotFoundException{
+		return DbObject.updateEventTime(eventId, localDateTime);
 	}
 
 	@Override
@@ -29,8 +29,8 @@ public class EventServiceImp implements EventService{
 	}
 	
 	@Override
-	public boolean updateEventRegistrationDeadline(int eventId, String newDeadLine) throws SQLException,ClassNotFoundException{
-		return DbObject.updateEventRegistrationDeadline(eventId, newDeadLine);
+	public boolean updateEventRegistrationDeadline(int eventId, LocalDateTime localDateTime) throws SQLException,ClassNotFoundException{
+		return DbObject.updateEventRegistrationDeadline(eventId, localDateTime);
 	}
 	
 	@Override

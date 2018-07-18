@@ -28,7 +28,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 			System.out.print("\n3: Exit");
 			System.out.print("\n\nEnter your choice : ");
 			int choice = scanner.nextInt();
-			try {
+			try { 
 				if(choice==1) {
 					showRegistrationMenu(employee); 
 				} 

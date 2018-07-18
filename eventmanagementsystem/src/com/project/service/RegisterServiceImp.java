@@ -27,7 +27,7 @@ public class RegisterServiceImp implements RegisterService {
 
 	@Override
 	public ArrayList<Registration> getRegistrationList() {
-		
+		 
 		return null;
 	}
 

@@ -9,7 +9,8 @@ public interface FoodDao {
 
 	ArrayList<Food> getFoodList(int eventId) throws ClassNotFoundException, SQLException;
     boolean insertFood(Food food) throws ClassNotFoundException, SQLException;
-    boolean deleteFood(String foodName,int eventId) throws ClassNotFoundException, SQLException;
-    boolean updateFood(String foodName, int eventId,int quantity) throws ClassNotFoundException, SQLException;
+    boolean deleteFood(int foodId,int eventId) throws ClassNotFoundException, SQLException;
+    boolean updateFood(int foodId, int eventId,int quantity) throws ClassNotFoundException, SQLException;
     boolean deleteFoodByEventId(int eventId) throws SQLException, ClassNotFoundException;
+    Food isFoodExist(int foodId,int eventId)throws ClassNotFoundException, SQLException;
 }

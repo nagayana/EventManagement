@@ -1,5 +1,6 @@
 package com.project.dao;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.project.pojo.Event;
@@ -9,9 +10,9 @@ public interface EventDao {
 	boolean insertEvent(Event event) throws SQLException,ClassNotFoundException;
 	boolean deleteEvent(int eventId) throws SQLException,ClassNotFoundException;
 	boolean updateEventName(int eventId,String newName) throws SQLException,ClassNotFoundException;
-	boolean updateEventTime(int eventId,String newTime) throws SQLException,ClassNotFoundException;
+	boolean updateEventTime(int eventId,LocalDateTime localDateTime) throws SQLException,ClassNotFoundException;
 	boolean updateEventLocation(int eventId,String newLocation) throws SQLException,ClassNotFoundException;
-	boolean updateEventRegistrationDeadline(int eventId,String newDeadline) throws SQLException,ClassNotFoundException;
+	boolean updateEventRegistrationDeadline(int eventId,LocalDateTime localDateTime) throws SQLException,ClassNotFoundException;
 	boolean updateEvent(int eventid, Event newEvent) throws SQLException,ClassNotFoundException;
 	boolean incrementCurrentRegistration(int eventId) throws SQLException,ClassNotFoundException;
 	boolean decrementCurrentRegistration(int eventid) throws SQLException,ClassNotFoundException;
