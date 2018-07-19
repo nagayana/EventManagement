@@ -77,7 +77,8 @@ public class EventOperation {
 			System.out.println("Enter Designation Id : ");
 			int designationId=sc.nextInt();
 			guestService.insertGuestList(designationId, eventId);
-			System.out.println("Do you want to add more type of Guest\nIf yes input 1\n "
+			System.out.println("--------------------------------------------------------------------------------\n"
+					+ "Do you want to add more type of Guest\nIf yes input 1\n "
 					+ "If no press any other integer \nEnter your Choice :");
 			want = sc.nextInt();
 		}
@@ -118,7 +119,8 @@ public class EventOperation {
 				foodService.insertFood(foodItem);
 			}
 			
-			System.out.println("Do you want to add more food\nIf yes input 1\n"
+			System.out.println("----------------------------------------------------------------------------------------\n"
+					+ "Do you want to add more food\nIf yes input 1\n"
 					+ "If no press any other integer\nEnter your Choice :");
 			want = sc.nextInt();
 			
@@ -136,7 +138,8 @@ public class EventOperation {
 			System.out.println("------------------------------------------------------------------------------------------------");
 			Attraction attraction=input.acceptAttractionListDetails(eventId);
 			attractionService.insertAttraction(attraction);
-			System.out.println("Do you want to add more attraction\nIf yes input 1\n"
+			System.out.println("----------------------------------------------------------------------------------------\n"
+					+ "Do you want to add more attraction\nIf yes input 1\n"
 					+ "If no press any other integer \nEnter your Choice :");
 			want = sc.nextInt();
 		}
