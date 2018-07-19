@@ -36,17 +36,17 @@ public class FoodServiceImp implements FoodService {
 
 
 	@Override
-	public boolean deleteFood(String foodName, int eventId) throws ClassNotFoundException, SQLException {
+	public boolean deleteFood(int foodId, int eventId) throws ClassNotFoundException, SQLException {
 		FoodDaoimp foodObj=new FoodDaoimp();
-		return foodObj.deleteFood(foodName,eventId);
+		return foodObj.deleteFood(foodId,eventId);
 	}
 
 
 
 	@Override
-	public boolean updatefood(String foodName, int eventId,int quantity) throws ClassNotFoundException, SQLException {
+	public boolean updatefood(int foodId, int eventId,int quantity) throws ClassNotFoundException, SQLException {
 		FoodDaoimp foodObj=new FoodDaoimp();
-		return foodObj.updateFood(foodName,eventId,quantity);
+		return foodObj.updateFood(foodId,eventId,quantity);
 	}
 
 
@@ -55,6 +55,14 @@ public class FoodServiceImp implements FoodService {
 	public boolean deleteFoodByEventId(int eventId) throws ClassNotFoundException, SQLException {
 		FoodDaoimp foodObj=new FoodDaoimp();
 		return foodObj.deleteFoodByEventId(eventId);
+	}
+
+
+
+	@Override
+	public Food isFoodExist(int foodId,int eventId) throws ClassNotFoundException, SQLException {
+		FoodDaoimp foodObj=new FoodDaoimp();
+		return foodObj.isFoodExist(foodId, eventId);
 	}
 
 		

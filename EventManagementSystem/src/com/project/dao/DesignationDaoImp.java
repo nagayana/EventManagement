@@ -9,10 +9,12 @@ import com.project.pojo.Designation;
 
 public class DesignationDaoImp implements DesignationDao {
 
-	public ArrayList<Designation> getDesignationList() throws SQLException, ClassNotFoundException{
+	public ArrayList<Designation> getDesignationList(int eventId) throws SQLException, ClassNotFoundException{
 		ArrayList<Designation> designationList=new ArrayList<>();
 		Connection con = DBConnection.getDBConnection();
-		PreparedStatement pStatement = con.prepareStatement("select * from designation");
+		//PreparedStatement pStatement = con.prepareStatement("select * from designation");
+		PreparedStatement pStatement = con.prepareStatement("select * from designation where designation_id not in(select designation_id from guestlist where event_id=?)");
+		pStatement.setInt(1, eventId);
 		ResultSet rs = pStatement.executeQuery();
 		
 	    while(rs.next())

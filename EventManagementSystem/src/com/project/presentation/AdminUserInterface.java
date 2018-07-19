@@ -28,38 +28,41 @@ public class AdminUserInterface implements OrganiserUserInterface {
 	
 	@Override
 	public void showMenu() {
-		System.out.println("=========You are logged in as organiser======="+"\n1.Create an "
-				+ "event\n"+"2.Delete an event\n"+"3. Show Event details\n"+"4. Update an event\n"+"Choose your choice");
+		System.out.print("=============You are logged in as organiser=========="+"\n1.Create an "
+				+ "event\n"+"2.Delete an event\n"+"3.Show Event details\n"+"4.Update an event\n5.System Exit\n"+"\nChoose your choice :");
 	    int choice1=sc.nextInt();
+	    System.out.println("============================================================================================");
 		actionPerform(choice1);  
-		
+		 
 		 
 	}
 
 	@Override
 	public void actionPerform(int choice)
 	{  
-		switch(choice) 
+		switch(choice)  
 		{
 		   case 1:
 			   
 			   int eventId= event.createNewEvent();
 			   uevent.insertEventExtraDetails(eventId);
+			   showMenu();
 			   break;
 			   
 			   
 		   case 2:
-			   System.out.println("\n\n\nHere are the List of events");
+			   System.out.println("=============================================================="
+			   		+ "\nHere are the List of events");
 			   try {
 				       eventList = events.getAllEvents();
 			       } catch (ClassNotFoundException | SQLException e) {
 				       e.printStackTrace();
 			       }
 			    for(Event ev:eventList)
-			    {
+			    { 
 			    	System.out.println("Event Id = "+ev.getEventID());
 			    }
-			   System.out.println("\n\n\nEnter the event Id of event you want to delete :");
+			   System.out.print("\nEnter the event Id of event you want to delete :");
 			   eventId=sc.nextInt();
 			   try {
 				      if(event.deleteEvent(eventId))
@@ -67,15 +70,16 @@ public class AdminUserInterface implements OrganiserUserInterface {
 				      else
 				    	  System.out.println("Something went wrong in the deletion of the event");
 			       }
-			   
+			    
 			   catch (ClassNotFoundException | SQLException e) {
 				      e.printStackTrace();
 			       }
+			   showMenu();
 			   break;
 			   
 			   
 		   case 3:
-			   System.out.println("\n\n\nHere are the List of events");
+			   System.out.println("\nHere are the List of events");
 			   
 			   try {
 				       eventList = events.getAllEvents();
@@ -94,39 +98,51 @@ public class AdminUserInterface implements OrganiserUserInterface {
 			    System.out.println("\n\nSelect an event id to see its food details,attraction details and guestlist details"
 			    		+ "\nEnter the Event ID :");
 			    eventId = sc.nextInt();
-			    updateHelper.showAttraction(eventId);
-			    updateHelper.showFood(eventId);
-			    updateHelper.showGuest(eventId);
-			    
+			    if(!updateHelper.showAttraction(eventId))
+			    	System.out.println("The Attraction List is empty");
+			    if(!updateHelper.showFood(eventId))
+			    	System.out.println("The Food List is empty");
+			    if(!updateHelper.showGuest(eventId))
+			    	System.out.println("The guest List is empty");
+			    showMenu();
 			    break;
 			    
 			
 		   case 4:
-			   System.out.println("\n\n\nHere are the List of events");
+			   System.out.println("\nHere are the List of events");
 			   ArrayList<Event> eventList = new ArrayList<>();
 			   try {
 				       eventList = events.getAllEvents();
 			       } catch (ClassNotFoundException | SQLException e) {
 				       e.printStackTrace();
 			       }
-			    for(Event ev:eventList)
+			    for(Event ev:eventList) 
 			    {
 			    	System.out.println("Event Id = "+ev.getEventID());
-			    }
-			   System.out.println("\n\n\nEnter the event Id of event you want to update :");
+			    } 
+			   System.out.println("\nEnter the event Id of event you want to update :");
 			   eventId=sc.nextInt();
 			   try {
 				      uevent.updateEvent(eventId);
 			       } catch (ClassNotFoundException | SQLException e) {
-				      e.printStackTrace();
-			}
+				      e.printStackTrace(); 
+			       }
+			       showMenu();
+			   break;
+			   
+		   case 5:
+			   System.out.println("\n======= Good Bye. Thank you for using event management system =======");
+			   System.exit(0);
 			   break;
 			   
 			default :
-				System.out.println("You Have Entered a wrong Choice ");
+				System.out.print("You have input a wrong choice \n\nEnter again a valid choice :");
+				choice=sc.nextInt();
+				actionPerform(choice);
+				   break;
 			   
 			    
-			    
+			     
 			   }
 		
 		//switch case end	

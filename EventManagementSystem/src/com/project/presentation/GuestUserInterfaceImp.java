@@ -14,7 +14,7 @@ import com.project.pojo.Event;
 import com.project.service.EventServiceImp;
 import com.project.service.RegisterServiceImp;
 
-public class GuestUserInterfaceImp implements GuestUserInterface { 
+public class GuestUserInterfaceImp implements GuestUserInterface {
 	
 	@Override
 	public void showMenu(Employee employee)
@@ -28,7 +28,7 @@ public class GuestUserInterfaceImp implements GuestUserInterface {
 			System.out.print("\n3: Exit");
 			System.out.print("\n\nEnter your choice : ");
 			int choice = scanner.nextInt();
-			try {
+			try { 
 				if(choice==1) {
 					showRegistrationMenu(employee); 
 				} 

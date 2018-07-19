@@ -64,4 +64,10 @@ public class GuestListServiceImp implements GuestListService{
 		GuestListDao guestdao=new GuestListDaoImp(); 
 		return guestdao.deleteGuestListByEventId(eventId);
 	}
+
+	@Override
+	public ArrayList<Integer> DesignationByEventId(int eventId) throws ClassNotFoundException, SQLException {
+		GuestListDao guestdao=new GuestListDaoImp(); 
+		return guestdao.DesignationByEventId(eventId);
+	}
 }

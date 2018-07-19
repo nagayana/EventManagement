@@ -30,7 +30,7 @@ public class AttractionServiceImp implements AttractionService {
 	@Override
 	public boolean updateAttraction(int attractionId, Attraction attraction) throws ClassNotFoundException, SQLException {
 		AttractionDaoImplement attractionObj=new AttractionDaoImplement();
-		return attractionObj.updateAttraction(attractionId, attraction);
+		return attractionObj.updateAttraction(attractionId, attraction); 
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class AttractionServiceImp implements AttractionService {
 	@Override
 	public boolean deleteAttractionByEvenetId(int eventId) throws ClassNotFoundException, SQLException {
 		AttractionDaoImplement attractionObj=new AttractionDaoImplement();
-		return attractionObj.deleteAttraction(eventId);
+		return attractionObj.deleteAttractionByEvenetId(eventId);
 	}
 
 	

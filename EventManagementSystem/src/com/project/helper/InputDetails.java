@@ -14,35 +14,43 @@ import com.project.pojo.GuestList;
 import com.project.service.*;
 
 public class InputDetails {
-	
+	IntegerValidation intvalidation=new IntegerValidation();
 	Timestamp t;
 	public Event acceptEventDetails(){
 		Scanner sc = new Scanner(System.in);
 		Event event=new Event();
-		System.out.println("Enter event ID (INTEGER):");
-		event.setEventID(sc.nextInt());
-		System.out.println("Enter event Name :");
+		System.out.print("Enter Event ID :");
+		event.setEventID(intvalidation.validatInteger());
+		System.out.print("Enter Event Name :");
 		event.setEventName(sc.next());
-		System.out.println("Enter event location :");
+		System.out.print("Enter Event location :"); 
 		event.setEventLocation(sc.next());
-		System.out.println("Enter event time :");
+		System.out.print("Enter Event time (yyyy-mm-ddthh:mm:ss):");
 		LocalDateTime eventTime = LocalDateTime.parse(sc.next());
-	
+		while(LocalDateTime.now().isAfter(eventTime)){
+			System.out.println("Please Select a coming Date ");
+			System.out.print("Again Enter Event Time(yyyy-mm-ddthh:mm:ss):");
+			eventTime = LocalDateTime.parse(sc.next());
+		}
 		event.setEventTime(eventTime);
-		System.out.println("Enter event Registration deadline :");
+		System.out.print("Enter Event Registration deadline (yyyy-mm-ddthh:mm:ss):"); 
 		
 		LocalDateTime eventDeadline = LocalDateTime.parse(sc.next());
+		while(LocalDateTime.now().isAfter(eventDeadline)){
+			System.out.println("Please select a coming Date");
+			System.out.print("Enter event Registration deadline (yyyy-mm-ddthh:mm:ss):");
+			eventDeadline = LocalDateTime.parse(sc.next());
+		}
 		
 		while(eventDeadline.isAfter(eventTime)){
-			Scanner scanner = new Scanner(System.in);
 			System.out.println("Deadline date must be before event date. Please try again");
 			System.out.print("Enter event Registration deadline :");
-			eventDeadline = LocalDateTime.parse(scanner.next());
+			eventDeadline = LocalDateTime.parse(sc.next());
 		}
 		
 		event.setEventRegistrationDeadline(eventDeadline);
-		System.out.println("Enter event maximum registration value :"); 
-		event.setMaxRegistration(sc.nextInt());
+		System.out.print("Enter event maximum registration value :"); 
+		event.setMaxRegistration(intvalidation.validatInteger());
 		event.setCurrentRegistration(0); 
 		return event;
 		
@@ -61,7 +69,7 @@ public class InputDetails {
 	    
 	    System.out.println("Enter the quatity you "
 	    		+ "want :");
-	    foodList.setQuantity(sc.nextInt());
+	    foodList.setQuantity(intvalidation.validatInteger());
 		return foodList;
 	}
 
@@ -71,15 +79,15 @@ public class InputDetails {
 		Attraction attraction=new Attraction();
 		attraction.setEventId(eventId);
 		System.out.println("Enter attraction id :");
-		attraction.setAttractionId(sc.nextInt());
+		attraction.setAttractionId(intvalidation.validatInteger());
 		System.out.println("Enter attraction name :");
 		attraction.setName(sc.next());
 		System.out.println("Enter attraction co-ordinator");
 		attraction.setCoordinatorName(sc.next());
 		System.out.println("Enter attraction duration in Hours :");
-		attraction.setDuration(sc.nextInt());
+		attraction.setDuration(intvalidation.validatInteger());
 		System.out.println("Enter attraction price :");
-		attraction.setPrice(sc.nextInt());
+		attraction.setPrice(intvalidation.validatInteger());
 		
 		return attraction;
 	}

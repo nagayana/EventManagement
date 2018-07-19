@@ -89,6 +89,21 @@ public class GuestListDaoImp implements GuestListDao {
 				return false;
 		}
 	}
+
+	@Override
+	public ArrayList<Integer> DesignationByEventId(int eventId) throws ClassNotFoundException, SQLException {
+		Connection connection = DBConnection.getDBConnection();
+		PreparedStatement pstmt = connection.prepareStatement("select designation_id from guestlist where event_id = ?");
+		pstmt.setInt(1, eventId);
+		ResultSet rs = pstmt.executeQuery();
+		
+		ArrayList<Integer> designationIdList = new ArrayList<>();
+		while(rs.next())
+		{
+			designationIdList.add(rs.getInt(1));
+		}
+		return designationIdList;
+	}
 	
 	
 

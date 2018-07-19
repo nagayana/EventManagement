@@ -121,7 +121,7 @@ public class EventDaoImp implements EventDao {
 	public boolean updateEventLocation(int eventId,String newLocation) throws SQLException, ClassNotFoundException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("update events set event_location = ? where event_id = ?");
+		PreparedStatement pStatement = connection.prepareStatement("update events set location = ? where event_id = ?");
 		pStatement.setString(1, newLocation);
 		pStatement.setInt(2, eventId);
 		int result = pStatement.executeUpdate();
@@ -136,11 +136,11 @@ public class EventDaoImp implements EventDao {
 	}
 
 	@Override
-	public boolean updateEventTime(int eventId,String newTime) throws ClassNotFoundException, SQLException
+	public boolean updateEventTime(int eventId,LocalDateTime localDateTime) throws ClassNotFoundException, SQLException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("update events set event_time = ? where event_id = ?");
-		pStatement.setString(1, newTime);
+		PreparedStatement pStatement = connection.prepareStatement("update events set time = ? where event_id = ?");
+		pStatement.setString(1, localDateTime.toString());
 		pStatement.setInt(2, eventId);
 		int result = pStatement.executeUpdate();
 		if(result>0)
@@ -154,11 +154,11 @@ public class EventDaoImp implements EventDao {
 	}
 
 	@Override
-	public boolean updateEventRegistrationDeadline(int eventId,String newDeadLine) throws ClassNotFoundException, SQLException
+	public boolean updateEventRegistrationDeadline(int eventId,LocalDateTime localDateTime) throws ClassNotFoundException, SQLException
 	{
 		Connection connection = DBConnection.getDBConnection();
-		PreparedStatement pStatement = connection.prepareStatement("update events set event_registration_deadline = ? where event_id = ?");
-		pStatement.setString(1, newDeadLine);
+		PreparedStatement pStatement = connection.prepareStatement("update events set registration_deadline = ? where event_id = ?");
+		pStatement.setString(1, localDateTime.toString());
 		pStatement.setInt(2, eventId);
 		int result = pStatement.executeUpdate();
 		if(result>0)
