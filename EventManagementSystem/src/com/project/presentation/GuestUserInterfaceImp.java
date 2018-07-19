@@ -14,7 +14,7 @@ import com.project.pojo.Event;
 import com.project.service.EventServiceImp;
 import com.project.service.RegisterServiceImp;
 
-public class GuestUserInterfaceImp implements GuestUserInterface {
+public class GuestUserInterfaceImp implements GuestUserInterface { 
 	
 	@Override
 	public void showMenu(Employee employee)
