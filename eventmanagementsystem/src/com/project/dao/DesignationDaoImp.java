@@ -9,7 +9,7 @@ import com.project.pojo.Designation;
 
 public class DesignationDaoImp implements DesignationDao {
 
-	public ArrayList<Designation> getDesignationList() throws SQLException, ClassNotFoundException{
+	public ArrayList<Designation> getDesignationList(int eventId) throws SQLException, ClassNotFoundException{
 		ArrayList<Designation> designationList=new ArrayList<>();
 		Connection con = DBConnection.getDBConnection();
 		PreparedStatement pStatement = con.prepareStatement("select * from designation");

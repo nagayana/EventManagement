@@ -65,7 +65,7 @@ public class EventOperation {
 		int want=1;
 		System.out.println("-----------------------------------------------------------------------------\n"
 				+ "Here is the list of Designation from where you can pick your guest");
-		ArrayList<Designation> designationList = designationService.getAllDesignations();
+		ArrayList<Designation> designationList = designationService.getAllDesignations(eventId);
 		for(Designation desig:designationList)
 		{
 			System.out.println("Designation ID = "+desig.getDesignationId()+ 
@@ -108,9 +108,10 @@ public class EventOperation {
 			int foodId=sc.nextInt();
 			Food foodobj=foodService.isFoodExist(foodId, eventId);
 			if(foodobj != null)
-			{
+			{ 
+				IntegerValidation intValidation=new IntegerValidation();
 				System.out.println("This food is already in the list \nEnter the additional amount :");
-				foodService.updatefood(foodId, eventId, foodobj.getQuantity()+sc.nextInt());
+				foodService.updatefood(foodId, eventId, foodobj.getQuantity()+intValidation.validatInteger());
 			}
 			else
 			{

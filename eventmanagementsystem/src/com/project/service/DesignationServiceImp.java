@@ -12,10 +12,10 @@ public class DesignationServiceImp implements DesignationService {
 
 	
 
-	public ArrayList<Designation> getAllDesignations()
+	public ArrayList<Designation> getAllDesignations(int eventId)
 			throws ClassNotFoundException, SQLException {
 		DesignationDao designationdao = new DesignationDaoImp();
-		return designationdao.getDesignationList();
+		return designationdao.getDesignationList(eventId);
 		
 
 	}
